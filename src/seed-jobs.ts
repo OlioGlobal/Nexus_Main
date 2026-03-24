@@ -135,14 +135,15 @@ function buildRichTextContent(sections: {
   about: string
   keyResponsibilities: string[]
 }) {
-  const children: any[] = []
+  const children: Record<string, any>[] = []
+  const dir = 'ltr' as const
 
   // "What We're Looking For" heading
   children.push({
     type: 'heading',
     tag: 'h2',
     children: [{ type: 'text', text: "What We're Looking For", version: 1 }],
-    direction: 'ltr',
+    direction: dir,
     format: '',
     indent: 0,
     version: 1,
@@ -156,13 +157,13 @@ function buildRichTextContent(sections: {
     children: sections.whatWereLookingFor.map((item) => ({
       type: 'listitem',
       children: [{ type: 'text', text: item, version: 1 }],
-      direction: 'ltr',
+      direction: dir,
       format: '',
       indent: 0,
       version: 1,
       value: 1,
     })),
-    direction: 'ltr',
+    direction: dir,
     format: '',
     indent: 0,
     start: 1,
@@ -174,7 +175,7 @@ function buildRichTextContent(sections: {
     type: 'heading',
     tag: 'h2',
     children: [{ type: 'text', text: 'About', version: 1 }],
-    direction: 'ltr',
+    direction: dir,
     format: '',
     indent: 0,
     version: 1,
@@ -186,7 +187,7 @@ function buildRichTextContent(sections: {
     children.push({
       type: 'paragraph',
       children: [{ type: 'text', text: para, version: 1 }],
-      direction: 'ltr',
+      direction: dir,
       format: '',
       indent: 0,
       version: 1,
@@ -198,7 +199,7 @@ function buildRichTextContent(sections: {
     type: 'heading',
     tag: 'h2',
     children: [{ type: 'text', text: 'Key Responsibilities', version: 1 }],
-    direction: 'ltr',
+    direction: dir,
     format: '',
     indent: 0,
     version: 1,
@@ -212,13 +213,13 @@ function buildRichTextContent(sections: {
     children: sections.keyResponsibilities.map((item) => ({
       type: 'listitem',
       children: [{ type: 'text', text: item, version: 1 }],
-      direction: 'ltr',
+      direction: dir,
       format: '',
       indent: 0,
       version: 1,
       value: 1,
     })),
-    direction: 'ltr',
+    direction: dir,
     format: '',
     indent: 0,
     start: 1,
@@ -229,7 +230,7 @@ function buildRichTextContent(sections: {
     root: {
       type: 'root',
       children,
-      direction: 'ltr',
+      direction: dir,
       format: '',
       indent: 0,
       version: 1,
@@ -264,7 +265,7 @@ async function seed() {
         mode: job.mode,
         department: job.department,
         status: 'open',
-        content: buildRichTextContent(job.sections),
+        content: buildRichTextContent(job.sections) as any,
       },
     })
 

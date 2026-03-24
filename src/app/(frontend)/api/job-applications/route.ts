@@ -56,7 +56,7 @@ export async function POST(req: Request) {
 
     await payload.create({
       collection: 'job-applications',
-      data: applicationData,
+      data: applicationData as any,
     })
 
     return NextResponse.json({ success: true })
