@@ -1,0 +1,114 @@
+@reference "../../(frontend)/styles.css";
+
+/* Blog Post Rich Text Styles */
+.blog-content {
+  @apply max-w-[900px] mx-auto px-5 py-8 md:py-12 overflow-hidden wrap-break-word;
+}
+
+/* Headings */
+.blog-content h1 {
+  @apply font-['Space_Grotesk'] font-medium text-[26px] md:text-[32px] leading-[34px] md:leading-[40px] text-[#212121] mt-9 md:mt-12 mb-4;
+}
+
+.blog-content h2 {
+  @apply font-['Space_Grotesk'] font-medium text-[22px] md:text-[28px] leading-[30px] md:leading-[36px] text-[#212121] mt-8 md:mt-10 mb-3.5;
+}
+
+.blog-content h3 {
+  @apply font-['Space_Grotesk'] font-medium text-[20px] md:text-[24px] leading-[28px] md:leading-[32px] text-[#212121] mt-7 md:mt-8 mb-3;
+}
+
+.blog-content h4 {
+  @apply font-['Space_Grotesk'] font-medium text-[18px] md:text-[20px] leading-[26px] md:leading-[28px] text-[#212121] mt-6 md:mt-7 mb-2.5;
+}
+
+/* Paragraphs */
+.blog-content p {
+  @apply font-['Inter'] font-normal text-[15px] md:text-[16px] leading-[26px] md:leading-[28px] tracking-[-0.01em] text-[#333333] mb-5;
+}
+
+/* Links */
+.blog-content a {
+  @apply text-[#088000] underline underline-offset-[3px] transition-colors hover:text-[#066600];
+}
+
+/* Lists */
+.blog-content ul {
+  @apply font-['Inter'] font-normal text-[15px] md:text-[16px] leading-[26px] md:leading-[28px] tracking-[-0.01em] text-[#333333] mb-5 pl-5 md:pl-6 list-disc;
+}
+
+.blog-content ol {
+  @apply font-['Inter'] font-normal text-[15px] md:text-[16px] leading-[26px] md:leading-[28px] tracking-[-0.01em] text-[#333333] mb-5 pl-5 md:pl-6 list-decimal;
+}
+
+.blog-content li {
+  @apply mb-2 wrap-break-word;
+}
+
+/* Blockquote */
+.blog-content blockquote {
+  @apply border-l-[3px] border-[#FF7100] px-4 md:px-6 py-3 md:py-4 my-5 md:my-7 bg-[rgba(255,113,0,0.04)];
+}
+
+.blog-content blockquote p {
+  @apply font-['Space_Grotesk'] font-medium text-[16px] md:text-[18px] leading-[26px] md:leading-[28px] text-[#212121] mb-0;
+}
+
+/* Images */
+.blog-content img {
+  @apply w-full h-auto my-5 md:my-7 border border-[#CCCCCC];
+}
+
+/* Code */
+.blog-content code {
+  @apply font-['Space_Mono'] text-[13px] md:text-[14px] bg-[#f5f0e6] px-1.5 py-0.5 border border-[#CCCCCC];
+}
+
+.blog-content pre {
+  @apply bg-[#212121] text-[#FEF9EF] p-4 md:p-5 my-5 md:my-7 overflow-x-auto border border-[#333333];
+}
+
+.blog-content pre code {
+  @apply bg-transparent border-none p-0 text-inherit text-[14px] leading-[24px];
+}
+
+/* Horizontal Rule */
+.blog-content hr {
+  @apply border-none border-t border-[#CCCCCC] my-7 md:my-10;
+}
+
+/* Strong / Emphasis */
+.blog-content strong {
+  @apply font-semibold text-[#212121];
+}
+
+.blog-content em {
+  @apply italic;
+}
+
+/* Tables */
+.blog-content table {
+  @apply w-full border-collapse my-5 md:my-7 font-['Inter'] text-[15px];
+}
+
+.blog-content th,
+.blog-content td {
+  @apply border border-[#CCCCCC] px-4 py-3 text-left;
+}
+
+.blog-content th {
+  @apply bg-[#f5f0e6] font-semibold text-[#212121];
+}
+
+.blog-content td {
+  @apply text-[#333333];
+}
+
+/* First/Last element margin reset */
+.blog-content > *:first-child {
+  @apply mt-0;
+}
+
+.blog-content > *:last-child {
+  @apply mb-0;
+}

@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: #fef9ef;
+  --foreground: #0a0a0a;
+  --card: #fef9ef;
+  --card-foreground: #0a0a0a;
+  --popover: #fef9ef;
+  --popover-foreground: #0a0a0a;
+  --primary: #0a0a0a;
+  --primary-foreground: #fef9ef;
+  --secondary: #f5f0e6;
+  --secondary-foreground: #0a0a0a;
+  --muted: #f5f0e6;
+  --muted-foreground: #6b6b6b;
+  --accent: #f5f0e6;
+  --accent-foreground: #0a0a0a;
+  --destructive: #dc2626;
+  --border: #cccccc;
+  --input: #cccccc;
+  --ring: #0a0a0a;
+  --chart-1: #0a0a0a;
+  --chart-2: #6b6b6b;
+  --chart-3: #999999;
+  --chart-4: #cccccc;
+  --chart-5: #f5f0e6;
+  --radius: 0.5rem;
+  --sidebar: #fef9ef;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-primary: #0a0a0a;
+  --sidebar-primary-foreground: #fef9ef;
+  --sidebar-accent: #f5f0e6;
+  --sidebar-accent-foreground: #0a0a0a;
+  --sidebar-border: #cccccc;
+  --sidebar-ring: #0a0a0a;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ── Bordered Layout System ── */
+
+.section-outer {
+  @apply px-[5%];
+}
+
+.container-bordered {
+  @apply max-w-[1200px] mx-auto border-x border-[#CCCCCC];
+}
+
+.section-divider {
+  @apply border-b border-[#CCCCCC];
+}
+
+.grid-cell {
+  @apply p-4 md:p-8 border-b md:border-b-0 md:border-r border-[#CCCCCC];
+}
+
+.grid-cell-last {
+  @apply p-4 md:p-8 border-b md:border-b-0;
+}
+
+.stripe-divider {
+  @apply h-3 border-b border-[#CCCCCC];
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    #cccccc 4px,
+    #cccccc 5px
+  );
+}
+
+/* ── Buttons ── */
+
+.btn-primary {
+  @apply inline-flex items-center justify-center uppercase font-normal
+    text-[13px] h-10 px-3 py-2 gap-2.5
+    md:text-[16px] md:h-12 md:px-4 md:py-2
+    tracking-[0.03em] bg-[#088000] text-white
+    hover:opacity-90 transition-opacity;
+  font-family: 'Space Mono', monospace;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center uppercase font-normal
+    text-[13px] h-10 px-3 py-2 gap-2.5
+    md:text-[16px] md:h-12 md:px-4 md:py-2
+    tracking-[0.03em] text-[#212121] border border-[#212121]
+    hover:bg-[#212121] hover:text-white transition-colors;
+  font-family: 'Space Mono', monospace;
+  box-shadow: 0px -2px 4px 0px rgba(255, 255, 255, 0.07) inset;
+}
+
+.nav-link {
+  @apply text-sm text-[#0A0A0A] hover:text-[#088000] transition-colors;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ── Typography ── */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+p,
+li {
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Responsive Typography ── */
+
+h1 {
+  @apply font-medium text-[28px] leading-[34px] text-[#212121]
+    sm:text-[36px] sm:leading-[42px]
+    md:text-[40px] md:leading-[48px]
+    lg:text-[48px] lg:leading-[56px];
+}
+
+h2 {
+  @apply font-medium text-[22px] leading-[28px] text-[#212121]
+    sm:text-[26px] sm:leading-[32px]
+    md:text-[30px] md:leading-[36px]
+    lg:text-[36px] lg:leading-[44px];
+}
+
+h3 {
+  @apply font-medium text-[18px] leading-[24px] text-[#212121]
+    md:text-[20px] md:leading-[26px]
+    lg:text-[24px] lg:leading-[32px];
+}
+
+p,
+li {
+  @apply font-normal text-[14px] leading-[20px] text-[#6B6B6B] tracking-[-0.01em]
+    sm:text-[16px] sm:leading-[22px]
+    lg:text-[18px] lg:leading-[24px];
+}
+
+/* ── Section Spacing (reusable) ── */
+
+.section-spacing {
+  @apply py-10 md:py-14;
+}
+
+/* ── Section Title (reusable) ── */
+
+.section-title {
+  @apply uppercase text-center text-[14px] tracking-[0.03em];
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  line-height: 100%;
+  color: #6b6b6b;
+}
+
+/* ── Section Description (reusable) ── */
+
+.section-desc {
+  @apply font-normal text-[16px] leading-[22px] tracking-[-0.01em] text-[#6B6B6B]
+    md:text-[18px] md:leading-[24px];
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Section Header (reusable — title + h2 + desc) ── */
+
+.section-header {
+  @apply py-8 md:py-12 border-b border-[#CCCCCC];
+}
+
+/* ── Learn More Link (reusable) ── */
+
+.link-learn-more {
+  @apply uppercase tracking-[0.03em] text-[14px] md:text-[16px] underline underline-offset-[6px];
+  font-family: 'Space Mono', monospace;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+/* ── Keyframes ── */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

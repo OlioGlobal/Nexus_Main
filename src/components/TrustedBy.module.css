@@ -1,0 +1,25 @@
+.marqueeWrapper {
+  overflow: hidden;
+  padding: 24px 0;
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
+
+.logoItem {
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
