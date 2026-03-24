@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { getMediaUrl } from '@/lib/getMediaUrl'
 
 interface IndustriesProps {
   data?: {
@@ -108,10 +109,10 @@ export default function Industries({ data }: IndustriesProps) {
               `}
             >
               {/* Icon */}
-              {item.icon?.url ? (
+              {getMediaUrl(item.icon) ? (
                 <Image
-                  src={item.icon.url}
-                  alt={item.icon.alt || item.name || ''}
+                  src={getMediaUrl(item.icon)}
+                  alt={item.icon?.alt || item.name || ''}
                   width={100}
                   height={100}
                   className="h-20 md:h-28 w-16 md:w-24 object-contain mb-6 transition-all duration-300 group-hover:brightness-0 group-hover:invert"

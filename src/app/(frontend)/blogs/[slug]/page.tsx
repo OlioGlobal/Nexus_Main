@@ -6,6 +6,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import BlogCard from '@/components/BlogCard'
 import Divider from '@/components/Divider'
 import '../blogs.css'
+import { getMediaUrl } from '@/lib/getMediaUrl'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -58,7 +59,7 @@ export default async function BlogPostPage({ params }: Props) {
     month: 'short',
     day: 'numeric',
   })
-  const imageUrl = post.featuredImage?.url || post.featuredImage?.cloudinary?.secure_url || ''
+  const imageUrl = getMediaUrl(post.featuredImage)
 
   // Fetch related articles (same category, exclude current)
   const relatedResult = await payload.find({
@@ -160,8 +161,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {relatedPosts.map((relPost: any) => {
-              const relImageUrl =
-                relPost.featuredImage?.url || relPost.featuredImage?.cloudinary?.secure_url || ''
+              const relImageUrl = getMediaUrl(relPost.featuredImage)
               const relCategoryName =
                 typeof relPost.category === 'object' ? relPost.category?.name : ''
 

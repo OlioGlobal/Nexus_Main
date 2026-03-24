@@ -4,6 +4,7 @@ import { Suspense } from 'react'
 import BlogCard from '@/components/BlogCard'
 import BlogCategoryFilter from '@/components/BlogCategoryFilter'
 import Divider from '@/components/Divider'
+import { getMediaUrl } from '@/lib/getMediaUrl'
 
 interface Props {
   searchParams: Promise<{ category?: string }>
@@ -100,10 +101,7 @@ export default async function BlogsPage({ searchParams }: Props) {
         {posts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post: any) => {
-              const imageUrl =
-                post.featuredImage?.url ||
-                post.featuredImage?.cloudinary?.secure_url ||
-                ''
+              const imageUrl = getMediaUrl(post.featuredImage)
               const categoryName =
                 typeof post.category === 'object' ? post.category?.name : ''
 

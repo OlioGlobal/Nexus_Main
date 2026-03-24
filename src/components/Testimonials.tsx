@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { getMediaUrl } from '@/lib/getMediaUrl'
 import { useState } from 'react'
 import Autoplay from 'embla-carousel-autoplay'
 import {
@@ -109,10 +110,10 @@ export default function Testimonials({ data }: TestimonialsProps) {
                   onMouseLeave={() => setHovered(null)}
                 >
                   {/* Background Image */}
-                  {item.image?.url ? (
+                  {getMediaUrl(item.image) ? (
                     <Image
-                      src={item.image.url}
-                      alt={item.image.alt || item.name || ''}
+                      src={getMediaUrl(item.image)}
+                      alt={item.image?.alt || item.name || ''}
                       fill
                       className="object-cover"
                     />

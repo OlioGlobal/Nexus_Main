@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { getMediaUrl } from '@/lib/getMediaUrl'
 
 interface ProcessProps {
   data?: {
@@ -65,10 +66,10 @@ export default function Process({ data }: ProcessProps) {
           >
             {/* Icon */}
             <div className="mb-6 h-24 flex items-center justify-center">
-              {step.icon?.url ? (
+              {getMediaUrl(step.icon) ? (
                 <Image
-                  src={step.icon.url}
-                  alt={step.icon.alt || step.title || ''}
+                  src={getMediaUrl(step.icon)}
+                  alt={step.icon?.alt || step.title || ''}
                   width={140}
                   height={96}
                   className="h-44 w-auto object-contain"
