@@ -26,6 +26,7 @@ export const Jobs: CollectionConfig = {
   slug: 'jobs',
   admin: {
     useAsTitle: 'title',
+    group: 'Careers',
   },
   access: {
     read: ({ req: { user } }) => {

@@ -9,6 +9,7 @@ export const JobApplications: CollectionConfig = {
   admin: {
     useAsTitle: 'fullName',
     defaultColumns: ['fullName', 'email', 'job', 'createdAt'],
+    group: 'Inbox',
   },
   access: {
     create: () => true,

@@ -75,6 +75,8 @@ export interface Config {
     posts: Post;
     jobs: Job;
     'job-applications': JobApplication;
+    'case-studies': CaseStudy;
+    services: Service;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +92,8 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     jobs: JobsSelect<false> | JobsSelect<true>;
     'job-applications': JobApplicationsSelect<false> | JobApplicationsSelect<true>;
+    'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -374,6 +378,513 @@ export interface JobApplication {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies".
+ */
+export interface CaseStudy {
+  id: string;
+  /**
+   * Project name (e.g. "Paper Trail")
+   */
+  title: string;
+  /**
+   * Auto-generated from title
+   */
+  slug?: string | null;
+  status?: ('draft' | 'published') | null;
+  /**
+   * Lower numbers appear first
+   */
+  order?: number | null;
+  /**
+   * Client name (e.g. "Java Paper Group")
+   */
+  client: string;
+  /**
+   * Industry label (e.g. "Consumer Tech & E-Commerce")
+   */
+  industry: string;
+  /**
+   * Short subtitle shown on detail page
+   */
+  tagline?: string | null;
+  /**
+   * Card image shown on the listing page
+   */
+  coverImage: string | Media;
+  /**
+   * App screenshot / hero image at the top of the detail page
+   */
+  heroImage?: (string | null) | Media;
+  /**
+   * Short description of the client shown in the info block
+   */
+  clientDescription?: string | null;
+  /**
+   * Paragraph describing the business challenge
+   */
+  challenge?: string | null;
+  /**
+   * Solutions delivered — use bullet list in the editor
+   */
+  solutions?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Product / dashboard screenshots shown in the gallery
+   */
+  screenshots?:
+    | {
+        image: string | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Measurable outcomes — use bullet list in the editor
+   */
+  impact?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: string;
+  /**
+   * Service name (e.g. "AI Consulting Services")
+   */
+  title: string;
+  /**
+   * Auto-generated from title
+   */
+  slug?: string | null;
+  status?: ('draft' | 'published') | null;
+  /**
+   * Lower numbers appear first
+   */
+  order?: number | null;
+  /**
+   * Highlighted subtitle (e.g. "Find out where AI makes sense...")
+   */
+  tagline?: string | null;
+  /**
+   * CSS hex color for tagline text. Default: #E05C00
+   */
+  taglineColor?: string | null;
+  /**
+   * Brief description shown on the listing card and hero
+   */
+  shortDescription?: string | null;
+  /**
+   * Additional paragraph below the description in the hero
+   */
+  heroDetail?: string | null;
+  /**
+   * CTA button label
+   */
+  ctaText?: string | null;
+  /**
+   * CTA button URL
+   */
+  ctaLink?: string | null;
+  /**
+   * Image shown on the services listing card and detail page
+   */
+  coverImage?: (string | null) | Media;
+  /**
+   * Feature cards shown in the grid below the hero
+   */
+  benefits?:
+    | {
+        /**
+         * SVG or PNG icon
+         */
+        iconImage?: (string | null) | Media;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Detailed service overview — shown as a content section
+   */
+  overview?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Section heading (e.g. "Challenges in AI Adoption")
+   */
+  challengesSectionTitle?: string | null;
+  /**
+   * Each row = visible problem (left) + hidden problem (right)
+   */
+  challengeRows?:
+    | {
+        /**
+         * Left column — the problem the client can see
+         */
+        visibleProblem: string;
+        /**
+         * Right column — the underlying / hidden problem
+         */
+        hiddenProblem: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Closing statement below the challenges table
+   */
+  challengesConclusion?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Small bracket label above the title (e.g. "HOW WE APPROACH AI CONSULTING")
+   */
+  thinkingModelLabel?: string | null;
+  /**
+   * Section heading (e.g. "Towards a Solution: Our Thinking Model")
+   */
+  thinkingModelTitle?: string | null;
+  /**
+   * Subtitle paragraph below the section heading
+   */
+  thinkingModelDescription?: string | null;
+  /**
+   * Principle cards shown in the 4-column grid
+   */
+  thinkingModelPrinciples?:
+    | {
+        /**
+         * Illustration / icon for this principle
+         */
+        icon?: (string | null) | Media;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * White heading (e.g. "Find Out Where AI Actually Delivers")
+   */
+  midCtaTitle?: string | null;
+  /**
+   * Orange line below the title (e.g. "Measurable Value.")
+   */
+  midCtaHighlight?: string | null;
+  /**
+   * CTA button label
+   */
+  midCtaButtonText?: string | null;
+  /**
+   * CTA button URL
+   */
+  midCtaButtonLink?: string | null;
+  /**
+   * e.g. "What Makes Our AI Consultation Unique?"
+   */
+  uniqueSectionTitle?: string | null;
+  /**
+   * Cards for the 4-col unique grid
+   */
+  uniqueSectionItems?:
+    | {
+        icon?: (string | null) | Media;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * e.g. "Traditional Approach vs NeXus Approach"
+   */
+  comparisonTitle?: string | null;
+  /**
+   * Left column header (e.g. "Traditional IT Consulting")
+   */
+  comparisonLeftLabel?: string | null;
+  /**
+   * Right column header (e.g. "NeXus AI Consulting")
+   */
+  comparisonRightLabel?: string | null;
+  /**
+   * Left column items (traditional / negative)
+   */
+  comparisonLeftItems?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Right column items (NeXus / positive)
+   */
+  comparisonRightItems?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * e.g. "Step-by-Step Service Delivery"
+   */
+  processSectionTitle?: string | null;
+  /**
+   * Subtitle below the heading
+   */
+  processSectionSubtitle?: string | null;
+  /**
+   * Phase cards — auto-numbered PHASE 01, 02...
+   */
+  processSteps?:
+    | {
+        icon?: (string | null) | Media;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * White text before first highlight (e.g. "Want To Know Which")
+   */
+  processCtaTitlePart1?: string | null;
+  /**
+   * First orange inline word(s) (e.g. "Ai Investments")
+   */
+  processCtaHighlight1?: string | null;
+  /**
+   * White text between highlights (e.g. "Deliver The")
+   */
+  processCtaTitlePart2?: string | null;
+  /**
+   * Second orange inline word(s) (e.g. "Highest Roi")
+   */
+  processCtaHighlight2?: string | null;
+  /**
+   * White text after second highlight (e.g. "In Your Industry?")
+   */
+  processCtaTitlePart3?: string | null;
+  /**
+   * CTA button label
+   */
+  processCtaButtonText?: string | null;
+  /**
+   * CTA button URL
+   */
+  processCtaButtonLink?: string | null;
+  /**
+   * Deliverables / outcomes the client receives
+   */
+  whatWeDeliver?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Plain heading text (e.g. "Business Impact")
+   */
+  timelineSectionTitle?: string | null;
+  /**
+   * Orange highlighted word(s) after title (e.g. "Over Time")
+   */
+  timelineSectionHighlight?: string | null;
+  /**
+   * Timeline cards — auto-numbered. Description shows on hover.
+   */
+  timelineItems?:
+    | {
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * e.g. "Impact Stories: Real Stories of AI Transformation"
+   */
+  impactStoriesSectionTitle?: string | null;
+  /**
+   * Short intro paragraph below the section title
+   */
+  impactStoriesSectionDescription?: string | null;
+  /**
+   * Each item = one story card
+   */
+  impactStories?:
+    | {
+        /**
+         * e.g. "₹22L/Month From One Week of Analysis"
+         */
+        headline: string;
+        description?: string | null;
+        /**
+         * Optional image shown instead of the chart (e.g. screenshot, graph photo)
+         */
+        image?: (string | null) | Media;
+        /**
+         * Label shown on chart, e.g. "+120% ROI"
+         */
+        chartLabel?: string | null;
+        /**
+         * e.g. "What we discovered during our AI consulting audit:"
+         */
+        discoveryTitle?: string | null;
+        discoveryIntro?: string | null;
+        discoveryPoints?:
+          | {
+              point: string;
+              id?: string | null;
+            }[]
+          | null;
+        actionLabel?: string | null;
+        actionText?: string | null;
+        impactLabel?: string | null;
+        impactText?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Section heading (e.g. "Who AI Consulting Is For")
+   */
+  audienceSectionTitle?: string | null;
+  /**
+   * Carousel cards — each has an image, title, and description.
+   */
+  audienceItems?:
+    | {
+        title: string;
+        description?: string | null;
+        /**
+         * Card image (recommended 4:3 ratio)
+         */
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Plain text before highlight (e.g. "Get an")
+   */
+  ctaBannerTitle?: string | null;
+  /**
+   * Orange highlighted words (e.g. "AI Feasibility")
+   */
+  ctaBannerHighlight?: string | null;
+  /**
+   * Text after highlight (e.g. "Assessment")
+   */
+  ctaBannerTitleSuffix?: string | null;
+  ctaBannerDescription?: string | null;
+  ctaBannerButtonText?: string | null;
+  ctaBannerButtonLink?: string | null;
+  /**
+   * e.g. "Frequently Asked Questions"
+   */
+  faqSectionTitle?: string | null;
+  /**
+   * Each item = one question + answer
+   */
+  faqItems?:
+    | {
+        question: string;
+        answer?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Left sticky heading (e.g. "What We Deliver")
+   */
+  deliverablesSectionTitle?: string | null;
+  /**
+   * Orange subtitle below heading (e.g. "(And Why Each Deliverable Exists)")
+   */
+  deliverablesSectionSubtitle?: string | null;
+  /**
+   * Each card = one deliverable with impact + risk
+   */
+  deliverables?:
+    | {
+        title: string;
+        description?: string | null;
+        /**
+         * Why It Exists text
+         */
+        whyItExists?: string | null;
+        /**
+         * Business Impact text
+         */
+        businessImpact?: string | null;
+        /**
+         * Risk Mitigation text
+         */
+        riskMitigation?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -427,6 +938,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'job-applications';
         value: string | JobApplication;
+      } | null)
+    | ({
+        relationTo: 'case-studies';
+        value: string | CaseStudy;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: string | Service;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -619,6 +1138,195 @@ export interface JobApplicationsSelect<T extends boolean = true> {
   message?: T;
   resume?: T;
   job?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies_select".
+ */
+export interface CaseStudiesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  status?: T;
+  order?: T;
+  client?: T;
+  industry?: T;
+  tagline?: T;
+  coverImage?: T;
+  heroImage?: T;
+  clientDescription?: T;
+  challenge?: T;
+  solutions?: T;
+  screenshots?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  impact?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  status?: T;
+  order?: T;
+  tagline?: T;
+  taglineColor?: T;
+  shortDescription?: T;
+  heroDetail?: T;
+  ctaText?: T;
+  ctaLink?: T;
+  coverImage?: T;
+  benefits?:
+    | T
+    | {
+        iconImage?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  overview?: T;
+  challengesSectionTitle?: T;
+  challengeRows?:
+    | T
+    | {
+        visibleProblem?: T;
+        hiddenProblem?: T;
+        id?: T;
+      };
+  challengesConclusion?: T;
+  thinkingModelLabel?: T;
+  thinkingModelTitle?: T;
+  thinkingModelDescription?: T;
+  thinkingModelPrinciples?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  midCtaTitle?: T;
+  midCtaHighlight?: T;
+  midCtaButtonText?: T;
+  midCtaButtonLink?: T;
+  uniqueSectionTitle?: T;
+  uniqueSectionItems?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  comparisonTitle?: T;
+  comparisonLeftLabel?: T;
+  comparisonRightLabel?: T;
+  comparisonLeftItems?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  comparisonRightItems?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  processSectionTitle?: T;
+  processSectionSubtitle?: T;
+  processSteps?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  processCtaTitlePart1?: T;
+  processCtaHighlight1?: T;
+  processCtaTitlePart2?: T;
+  processCtaHighlight2?: T;
+  processCtaTitlePart3?: T;
+  processCtaButtonText?: T;
+  processCtaButtonLink?: T;
+  whatWeDeliver?: T;
+  timelineSectionTitle?: T;
+  timelineSectionHighlight?: T;
+  timelineItems?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  impactStoriesSectionTitle?: T;
+  impactStoriesSectionDescription?: T;
+  impactStories?:
+    | T
+    | {
+        headline?: T;
+        description?: T;
+        image?: T;
+        chartLabel?: T;
+        discoveryTitle?: T;
+        discoveryIntro?: T;
+        discoveryPoints?:
+          | T
+          | {
+              point?: T;
+              id?: T;
+            };
+        actionLabel?: T;
+        actionText?: T;
+        impactLabel?: T;
+        impactText?: T;
+        id?: T;
+      };
+  audienceSectionTitle?: T;
+  audienceItems?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
+  ctaBannerTitle?: T;
+  ctaBannerHighlight?: T;
+  ctaBannerTitleSuffix?: T;
+  ctaBannerDescription?: T;
+  ctaBannerButtonText?: T;
+  ctaBannerButtonLink?: T;
+  faqSectionTitle?: T;
+  faqItems?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
+        id?: T;
+      };
+  deliverablesSectionTitle?: T;
+  deliverablesSectionSubtitle?: T;
+  deliverables?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        whyItExists?: T;
+        businessImpact?: T;
+        riskMitigation?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

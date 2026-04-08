@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { getMediaUrl } from '@/lib/getMediaUrl'
 
 interface TrustedByProps {
   data?: {
@@ -11,7 +12,7 @@ interface TrustedByProps {
 
 export default function TrustedBy({ data }: TrustedByProps) {
   const title = data?.title || 'Trusted by industry leaders'
-  const logos = data?.logos?.filter((item) => item.logo?.url) || []
+  const logos = data?.logos?.filter((item) => getMediaUrl(item.logo)) || []
 
   if (logos.length === 0) return null
 
@@ -39,7 +40,7 @@ export default function TrustedBy({ data }: TrustedByProps) {
           {duplicated.map((item, i) => (
             <div key={i} className="shrink-0">
               <Image
-                src={item.logo!.url!}
+                src={getMediaUrl(item.logo)}
                 alt={item.logo?.alt || 'Client logo'}
                 width={160}
                 height={56}

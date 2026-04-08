@@ -13,7 +13,7 @@ import CTA from '@/components/CTA'
 
 export default async function HomePage() {
   const payload = await getPayload({ config })
-  const homeData = (await payload.findGlobal({ slug: 'home-page' })) as any
+  const homeData = (await payload.findGlobal({ slug: 'home-page', depth: 2 })) as any
 
   return (
     <main>

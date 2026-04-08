@@ -14,6 +14,7 @@ export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
     useAsTitle: 'email',
+    group: 'Settings',
   },
   auth: {
     tokenExpiration: 7200, // 2 hours

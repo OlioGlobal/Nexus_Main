@@ -8,6 +8,7 @@ export const Resumes: CollectionConfig = {
   slug: 'resumes',
   admin: {
     useAsTitle: 'filename',
+    group: 'Assets',
   },
   access: {
     create: () => true,

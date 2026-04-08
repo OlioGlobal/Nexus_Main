@@ -8,6 +8,9 @@ const isAdmin = ({ req: { user } }: { req: { user: any } }) => {
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  admin: {
+    group: 'Assets',
+  },
   access: {
     create: isAuthenticated,
     read: () => true,
@@ -33,7 +36,6 @@ export const Media: CollectionConfig = {
       'video/mp4',
       'video/webm',
     ],
-    // Max 10MB per file
     staticDir: 'media',
   },
 }

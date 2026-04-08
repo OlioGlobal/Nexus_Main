@@ -5,6 +5,7 @@ export const HomePage: GlobalConfig = {
   label: 'Home Page',
   access: {
     read: () => true,
+    update: ({ req: { user } }) => user?.role === 'admin',
   },
   fields: [
     {

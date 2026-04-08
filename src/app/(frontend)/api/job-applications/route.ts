@@ -2,6 +2,13 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { NextResponse } from 'next/server'
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const ALLOWED_MIME_TYPES = [
+  'application/pdf',
+  'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+]
+
 export async function POST(req: Request) {
   try {
     const formData = await req.formData()
@@ -18,6 +25,38 @@ export async function POST(req: Request) {
     if (!fullName || !email || !phone || !resume || !jobId) {
       return NextResponse.json(
         { error: 'Full name, email, phone, resume, and job are required.' },
+        { status: 400 },
+      )
+    }
+
+    // Input length limits
+    if (fullName.length > 200) {
+      return NextResponse.json({ error: 'Full name must be 200 characters or less.' }, { status: 400 })
+    }
+    if (email.length > 255) {
+      return NextResponse.json({ error: 'Email must be 255 characters or less.' }, { status: 400 })
+    }
+    if (phone.length > 20) {
+      return NextResponse.json({ error: 'Phone must be 20 characters or less.' }, { status: 400 })
+    }
+    if (message && message.length > 5000) {
+      return NextResponse.json({ error: 'Message must be 5000 characters or less.' }, { status: 400 })
+    }
+
+    // Email format validation
+    if (!EMAIL_REGEX.test(email)) {
+      return NextResponse.json({ error: 'Invalid email format.' }, { status: 400 })
+    }
+
+    // File size check (2MB limit)
+    if (resume.size > 2 * 1024 * 1024) {
+      return NextResponse.json({ error: 'Resume must be 2MB or less.' }, { status: 400 })
+    }
+
+    // MIME type validation
+    if (!ALLOWED_MIME_TYPES.includes(resume.type)) {
+      return NextResponse.json(
+        { error: 'Resume must be a PDF or Word document.' },
         { status: 400 },
       )
     }
@@ -61,7 +100,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Job application error:', error)
+    console.error('Job application error:', error instanceof Error ? error.message : 'Unknown error')
     return NextResponse.json(
       { error: 'Failed to submit application. Please try again.' },
       { status: 500 },

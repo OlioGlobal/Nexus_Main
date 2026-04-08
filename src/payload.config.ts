@@ -15,6 +15,8 @@ import { Posts } from './collections/Posts'
 import { Jobs } from './collections/Jobs'
 import { JobApplications } from './collections/JobApplications'
 import { Resumes } from './collections/Resumes'
+import { CaseStudies } from './collections/CaseStudies'
+import { Services } from './collections/Services'
 import { HomePage } from './globals/HomePage'
 
 const filename = fileURLToPath(import.meta.url)
@@ -23,6 +25,21 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   admin: {
     user: Users.slug,
+
+    meta: {
+      titleSuffix: ' | Nexus Admin',
+      icons: [{ url: '/ui/logo.svg' }],
+      openGraph: {
+        title: 'Nexus Admin',
+        description: 'OlioNexus Content Management System',
+      },
+    },
+    components: {
+      graphics: {
+        Logo: '@/components/AdminLogo',
+        Icon: '@/components/AdminLogo',
+      },
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -31,10 +48,13 @@ export default buildConfig({
   cors: [process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'],
   // CSRF — block cross-origin form submissions
   csrf: [process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'],
-  collections: [Users, Media, Resumes, Leads, Categories, Posts, Jobs, JobApplications],
+  collections: [Users, Media, Resumes, Leads, Categories, Posts, Jobs, JobApplications, CaseStudies, Services],
   globals: [HomePage],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: (() => {
+    if (!process.env.PAYLOAD_SECRET) throw new Error('PAYLOAD_SECRET environment variable is required')
+    return process.env.PAYLOAD_SECRET
+  })(),
   graphQL: {
     disable: true,
   },
@@ -44,7 +64,10 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: mongooseAdapter({
-    url: process.env.DATABASE_URL || '',
+    url: (() => {
+      if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL environment variable is required')
+      return process.env.DATABASE_URL
+    })(),
   }),
   email: nodemailerAdapter({
     defaultFromAddress: process.env.EMAIL_USER || '',
@@ -53,6 +76,7 @@ export default buildConfig({
       host: process.env.SMTP_HOST || 'smtp.gmail.com',
       port: Number(process.env.SMTP_PORT) || 587,
       secure: false,
+      requireTLS: true,
       auth: {
         user: process.env.EMAIL_USER || '',
         pass: process.env.EMAIL_PASS || '',

@@ -8,10 +8,11 @@ export const Leads: CollectionConfig = {
   slug: 'leads',
   admin: {
     useAsTitle: 'email',
+    group: 'Inbox',
   },
   access: {
     create: () => true,
-    read: ({ req: { user } }) => Boolean(user),
+    read: isAdmin,
     update: isAdmin,
     delete: isAdmin,
   },
