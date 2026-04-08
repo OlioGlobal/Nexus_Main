@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 
 interface ChallengeRow {
   visibleProblem: string
@@ -10,7 +11,7 @@ interface ChallengeRow {
 interface ServiceChallengesProps {
   sectionTitle?: string
   rows: ChallengeRow[]
-  conclusion?: string
+  conclusion?: any
 }
 
 const textStyle = { fontFamily: "'Inter', sans-serif" }
@@ -163,7 +164,7 @@ export default function ServiceChallenges({
       {/* Conclusion */}
       {conclusion && (
         <div className="px-4 md:px-8 py-6 md:py-8 border-t border-[#CCCCCC] challenges-conclusion">
-          <p>{conclusion}</p>
+          <RichText data={conclusion} />
         </div>
       )}
     </div>

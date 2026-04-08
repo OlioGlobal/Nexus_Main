@@ -1,4 +1,3 @@
-import DOMPurify from 'isomorphic-dompurify'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { notFound } from 'next/navigation'
@@ -140,7 +139,7 @@ export default async function BlogPostPage({ params }: Props) {
       {post.contentMode === 'html' && post.contentHTML ? (
         <div
           className="blog-content"
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.contentHTML) }}
+          dangerouslySetInnerHTML={{ __html: post.contentHTML }}
         />
       ) : post.content ? (
         <div className="blog-content">
