@@ -4,6 +4,8 @@ import CaseStudyCard from '@/components/CaseStudyCard'
 import Divider from '@/components/Divider'
 import { getMediaUrl } from '@/lib/getMediaUrl'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Case Studies | OlioNexus',
   description:
