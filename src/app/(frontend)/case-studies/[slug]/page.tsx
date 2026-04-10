@@ -88,10 +88,11 @@ export default async function CaseStudyPage({ params }: Props) {
           <Image
             src={heroImageUrl || coverImageUrl}
             alt={cs.heroImage?.alt || cs.coverImage?.alt || cs.title}
-            width={1200}
-            height={680}
-            className="w-full! h-auto! object-cover!"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
+            width={1920}
+            height={1080}
+            quality={100}
+            className="w-full! h-auto!"
+            sizes="100vw"
             priority
           />
         </div>
@@ -165,17 +166,19 @@ export default async function CaseStudyPage({ params }: Props) {
               const shotUrl = getMediaUrl(shot.image)
               if (!shotUrl) return null
               return (
-                <div
-                  key={i}
-                  className="relative w-full aspect-video overflow-hidden"
-                >
+                <div key={i} className="w-full">
                   <Image
                     src={shotUrl}
                     alt={shot.image?.alt || shot.caption || `Screenshot ${i + 1}`}
-                    fill
-                    className="object-cover! object-top!"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    width={1920}
+                    height={1080}
+                    quality={100}
+                    className="w-full! h-auto!"
+                    sizes="100vw"
                   />
+                  {shot.caption && (
+                    <p className="mt-2 text-[13px] text-[#6B6B6B] font-['Inter']">{shot.caption}</p>
+                  )}
                 </div>
               )
             })}
