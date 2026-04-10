@@ -21,7 +21,7 @@ export default function CaseStudyCard({
   return (
     <Link
       href={`/case-studies/${slug}`}
-      className="group flex flex-col border border-[#CCCCCC] -mb-px -mr-px -ml-px -mt-px p-5 md:p-8"
+      className="group flex flex-col border border-[#CCCCCC] -mb-px -mr-px -ml-px -mt-px p-5 md:p-8 transition-opacity duration-75 active:opacity-60 cursor-pointer"
     >
       {/* Image — padded inside card like reference design */}
       <div className="relative w-full aspect-[16/10] overflow-hidden mb-4">
