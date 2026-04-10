@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 /* ─── shimmer bar that sweeps left→right ─── */
-function Shimmer({ className = '' }: { className?: string }) {
+function Shimmer({ className = '', style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <div
       className={`relative overflow-hidden bg-[#EBEBEB] ${className}`}
-      style={{ borderRadius: 2 }}
+      style={{ borderRadius: 2, ...style }}
     >
       <div
         className="absolute inset-0"
@@ -175,8 +175,8 @@ export default function CaseStudyLoading() {
           <div className="px-3 sm:px-4 md:px-8 pb-6 pt-2 md:py-10 space-y-3">
             {[1, 0.9, 0.95, 0.75].map((w, i) => (
               <div key={i} className="flex items-start gap-3">
-                <Shimmer className="h-4 w-4 mt-0.5 shrink-0" style={{ borderRadius: '50%' } as any} />
-                <Shimmer className="h-4 flex-1" style={{ width: `${w * 100}%` } as any} />
+                <Shimmer className="h-4 w-4 mt-0.5 shrink-0" style={{ borderRadius: '50%' }} />
+                <Shimmer className="h-4 flex-1" style={{ width: `${w * 100}%` }} />
               </div>
             ))}
           </div>
@@ -196,8 +196,8 @@ export default function CaseStudyLoading() {
           <div className="px-3 sm:px-4 md:px-8 pb-6 pt-2 md:py-10 space-y-3">
             {[0.9, 0.75, 0.85].map((w, i) => (
               <div key={i} className="flex items-start gap-3">
-                <Shimmer className="h-4 w-4 mt-0.5 shrink-0" style={{ borderRadius: '50%' } as any} />
-                <Shimmer className="h-4 flex-1" style={{ width: `${w * 100}%` } as any} />
+                <Shimmer className="h-4 w-4 mt-0.5 shrink-0" style={{ borderRadius: '50%' }} />
+                <Shimmer className="h-4 flex-1" style={{ width: `${w * 100}%` }} />
               </div>
             ))}
           </div>
