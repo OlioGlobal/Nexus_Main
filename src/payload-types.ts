@@ -486,6 +486,10 @@ export interface Service {
    * Auto-generated from title
    */
   slug?: string | null;
+  /**
+   * Which product group this service belongs to
+   */
+  group: 'nexus-build' | 'nexus-ai' | 'nexus-labs';
   status?: ('draft' | 'published') | null;
   /**
    * Lower numbers appear first
@@ -1176,6 +1180,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
 export interface ServicesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
+  group?: T;
   status?: T;
   order?: T;
   tagline?: T;

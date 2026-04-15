@@ -18,6 +18,7 @@ export default function BlogCategoryFilter({ categories }: BlogCategoryFilterPro
   const activeCategory = searchParams.get('category') || 'all'
 
   const handleCategoryClick = (slug: string) => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
     if (slug === 'all') {
       router.push('/blogs')
     } else {

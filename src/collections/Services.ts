@@ -60,6 +60,17 @@ export const Services: CollectionConfig = {
       admin: { position: 'sidebar', readOnly: true, description: 'Auto-generated from title' },
     },
     {
+      name: 'group',
+      type: 'select',
+      required: true,
+      options: [
+        { label: 'Nexus Build (Technology Solutions)', value: 'nexus-build' },
+        { label: 'Nexus AI (AI & Automation)', value: 'nexus-ai' },
+        { label: 'Nexus Labs (Technology Transformation)', value: 'nexus-labs' },
+      ],
+      admin: { position: 'sidebar', description: 'Which product group this service belongs to' },
+    },
+    {
       name: 'status',
       type: 'select',
       defaultValue: 'draft',
