@@ -13,12 +13,21 @@ export const metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const payload = await getPayload({ config })
-  const homeData = (await payload.findGlobal({ slug: 'home-page', depth: 2 })) as any
+  const [homeData, servicesData] = await Promise.all([
+    payload.findGlobal({ slug: 'home-page', depth: 2 }) as Promise<any>,
+    payload.find({ collection: 'services', where: { status: { equals: 'published' } }, limit: 100, sort: 'order', depth: 0 }),
+  ])
+
+  const navServices = servicesData.docs.map((s: any) => ({
+    title: s.title,
+    slug: s.slug,
+    group: s.group as 'nexus-build' | 'nexus-ai' | 'nexus-labs',
+  }))
 
   return (
     <html lang="en">
       <body className="min-h-screen antialiased">
-        <Header industries={homeData?.industries?.items || []} />
+        <Header industries={homeData?.industries?.items || []} services={navServices} />
         <div className="section-outer">
           <div className="container-bordered">
             {children}

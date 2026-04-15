@@ -225,52 +225,35 @@ const industryIcons: Record<string, ReactElement> = {
   ),
 }
 
-const services = [
+const SERVICE_GROUPS = [
   {
+    key: 'nexus-ai' as const,
     name: 'Nexus.AI',
     description:
       'Custom AI agents handle repetitive tasks and reduce errors - so your team can focus on high-value strategic work.',
     color: '#5B8DEF',
-    items: [
-      'AI Transformation & Readiness',
-      'AI Agents / Custom Automation',
-      'AI Implementation & Integration',
-      'Voice AI Solutions',
-      'Workflow Automation (n8n, Make)',
-      'RAG & Knowledge Base Systems',
-      'AI Training & Enablement',
-    ],
   },
   {
+    key: 'nexus-build' as const,
     name: 'Nexus.Build',
     description:
       'From MVPs to full-scale products, we deliver high-quality software solutions with rapid iteration cycles and continuous improvement built in.',
     color: '#A78BFA',
-    items: [
-      'Website & App Development',
-      'UI/UX Consulting',
-      'Design Consulting',
-      'Product & MVP',
-      'Managed Services',
-      'AMC',
-      'Resource Augmentation (Staffing)',
-    ],
   },
   {
+    key: 'nexus-labs' as const,
     name: 'Nexus.Labs',
     description:
       'Modernize your tech stack seamlessly with phase-wise transformation built for future readiness.',
     color: '#F87171',
-    items: [
-      'Voice Agents',
-      'Integrated HRMS',
-      'Untangl - Project Management For Agencies',
-      'Agent AI Tools',
-      'Lead Pulse (WIP)',
-      'SEO Agents (WIP)',
-    ],
   },
 ]
+
+interface NavService {
+  title: string
+  slug: string
+  group: 'nexus-build' | 'nexus-ai' | 'nexus-labs'
+}
 
 interface IndustryItem {
   name?: string
@@ -278,7 +261,7 @@ interface IndustryItem {
   icon?: { url?: string; alt?: string; cloudinary?: { secure_url?: string } } | null
 }
 
-export default function Header({ industries = [] }: { industries?: IndustryItem[] }) {
+export default function Header({ industries = [], services = [] }: { industries?: IndustryItem[]; services?: NavService[] }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [industriesOpen, setIndustriesOpen] = useState(false)
@@ -327,52 +310,61 @@ export default function Header({ industries = [] }: { industries?: IndustryItem[
               {dropdownOpen && (
                 <div
                   className="fixed inset-0 top-16 z-40 backdrop-blur-sm bg-black/20"
-                  onMouseEnter={openDropdown}
+                  onClick={() => setDropdownOpen(false)}
                   onMouseLeave={closeDropdown}
                 >
                   {/* Dropdown panel */}
-                  <div className="absolute left-0 right-0 top-4 px-[5%]">
+                  <div
+                    className="absolute left-0 right-0 top-4 px-[5%]"
+                    onClick={(e) => e.stopPropagation()}
+                    onMouseEnter={openDropdown}
+                  >
                     <div className="max-w-[1200px] mx-auto border border-[#CCCCCC] bg-background shadow-sm">
                       {/* Services */}
                       <div className="grid grid-cols-3 border-b border-[#CCCCCC]">
-                        {services.map((svc, i) => (
-                          <div
-                            key={i}
-                            className={`group px-8 py-6 hover:bg-[#f9f5ee] transition-colors duration-200 ${i < 2 ? 'border-r border-[#CCCCCC]' : ''}`}
-                          >
-                            <div className="flex items-center gap-2 mb-2">
-                              <span
-                                className="w-2 h-2 rounded-full"
-                                style={{ backgroundColor: svc.color }}
-                              />
-                              <span
-                                className=" text-[16px]! md:text-[18px]! font-semibold text-[#212121] group-hover:text-[#E05C00] transition-colors"
-                                style={grotesk}
-                              >
-                                {svc.name}
-                              </span>
-                            </div>
-                            <p
-                              className="text-[14px]! leading-[18px] text-[#6B6B6B] mb-4"
-                              style={inter}
+                        {SERVICE_GROUPS.map((grp, i) => {
+                          const grpServices = services.filter((s) => s.group === grp.key)
+                          return (
+                            <div
+                              key={grp.key}
+                              className={`px-8 py-6 ${i < 2 ? 'border-r border-[#CCCCCC]' : ''}`}
                             >
-                              {svc.description}
-                            </p>
-                            <ul className="space-y-2">
-                              {svc.items.map((item, j) => (
-                                <li key={j} className="flex items-center gap-2">
-                                  <span className="text-[#CCCCCC] text-[12px]! shrink-0">■</span>
-                                  <span
-                                    className="text-[14px]! leading-[18px] text-[#212121] hover:text-[#E05C00] transition-colors cursor-pointer"
-                                    style={inter}
-                                  >
-                                    {item}
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
+                              <div className="flex items-center gap-2 mb-2">
+                                <span
+                                  className="w-2 h-2 rounded-full shrink-0"
+                                  style={{ backgroundColor: grp.color }}
+                                />
+                                <span
+                                  className="text-[16px]! md:text-[18px]! font-semibold text-[#212121]"
+                                  style={grotesk}
+                                >
+                                  {grp.name}
+                                </span>
+                              </div>
+                              <p
+                                className="text-[14px]! leading-[18px] text-[#6B6B6B] mb-4"
+                                style={inter}
+                              >
+                                {grp.description}
+                              </p>
+                              <ul className="space-y-2">
+                                {grpServices.map((svc) => (
+                                  <li key={svc.slug} className="flex items-center gap-2">
+                                    <span className="text-[#CCCCCC] text-[12px]! shrink-0">■</span>
+                                    <Link
+                                      href={`/services/${svc.slug}`}
+                                      className="text-[14px]! leading-[18px] text-[#212121] hover:text-[#E05C00] transition-colors"
+                                      style={inter}
+                                      onClick={() => setDropdownOpen(false)}
+                                    >
+                                      {svc.title}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )
+                        })}
                       </div>
                     </div>
                   </div>
