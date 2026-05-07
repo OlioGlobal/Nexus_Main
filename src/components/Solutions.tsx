@@ -15,61 +15,62 @@ interface SolutionsProps {
       link?: string
     }>
   }
+  serviceLinks?: Array<{ title: string; slug: string }>
 }
 
 const fallbackCards = [
   {
-    title: 'Nexus.AI',
+    title: 'NeXus.AI',
     description:
-      'Custom AI agents to handle repetitive tasks, mitigating human errors, so that your team can focus on high-value strategic initiatives.',
+      'Our team creates tailored AI solutions for your operational needs. Starting with business goals, we design, develop, and implement AI into your processes. AI agents handle routine tasks on your systems with no required license fees.',
     tags: [
-      'AI Transformation & Readiness',
+      'AI Consulting Services',
+      'AI Transformation Services',
       'AI Agents / Custom Automation',
-      'AI Implementation & Integration',
-      'Voice AI Solutions',
-      'Workflow Automation (N8n, Make)',
-      'RAG & Knowledge Base Systems',
-      'AI Training & Enablement',
+      'AI Implementation Services',
     ],
     image: '/ui/solution/nexusai.svg',
+    link: '/services#nexus-ai',
   },
   {
-    title: 'Nexus.Build',
+    title: 'NeXus.Labs',
     description:
-      'From MVPs to full-scale products, we deliver high-quality software solutions with rapid iteration cycles and continuous improvement built in.',
+      'We define a clear transformation strategy, redesign workflows with your team, support staff through changes, and coordinate execution, ensuring solutions stay aligned across Build and AI teams.',
     tags: [
-      'Website & App Development',
-      'Design Consulting',
-      'UI/UX Consulting',
-      'Product & MVP',
-      'Managed Services',
-      'AMC',
-      'Resource Augmentation (Staffing)',
-    ],
-    image: '/ui/solution/nexus.build.svg',
-  },
-  {
-    title: 'Nexus.Labs',
-    description:
-      'Modernize your technology stack without disrupting operations, executing phase-wise transformation for future-readiness.',
-    tags: [
-      'Voice Agents',
-      'Integrated HRMS',
-      'Untangl - Project Management For Agencies',
-      'Agent AI Tools',
-      'Lead Pulse (WIP)',
-      'SEO Agents (WIP)',
+      'Technology Transformation Consulting',
+      'Process Optimization',
+      'Change Management Support',
+      'Technology Roadmap Services',
     ],
     image: '/ui/solution/nexus.lavs.svg',
+    link: '/services#nexus-labs',
+  },
+  {
+    title: 'NeXus.Build',
+    description:
+      'Before development, we analyze your business challenge or engagement needs, then develop web or mobile applications with documentation. Deliverables include custom apps, platforms, and systems, delivered in fixed project sprints to minimize ongoing dependence.',
+    tags: [
+      'Software Product Development',
+      'App Development',
+      'Website Development Services',
+      'UI/UX Consulting Services',
+      'Design Consulting Services',
+      'Product & MVP Development',
+      'Managed IT Services',
+      'AMC Services',
+      'Resource Augmentation (Staffing) Services',
+    ],
+    image: '/ui/solution/nexus.build.svg',
+    link: '/services#nexus-build',
   },
 ]
 
-export default function Solutions({ data }: SolutionsProps) {
+export default function Solutions({ data, serviceLinks }: SolutionsProps) {
   const label = data?.label || '[Solutions]'
-  const prefix = data?.headingPrefix || 'We bring'
-  const highlight1 = data?.headingHighlight1 || 'disruption'
-  const middle = data?.headingMiddle || ', We build'
-  const highlight2 = data?.headingHighlight2 || 'dominance'
+  const prefix = data?.headingPrefix || 'The'
+  const highlight1 = data?.headingHighlight1 || 'Three'
+  const middle = data?.headingMiddle || ''
+  const highlight2 = data?.headingHighlight2 || 'Pillars'
   const cmsCards = data?.cards
 
   const cards =
@@ -81,7 +82,15 @@ export default function Solutions({ data }: SolutionsProps) {
           image: card.icon?.url || '',
           link: card.link || '#',
         }))
-      : fallbackCards.map((c) => ({ ...c, link: '#' }))
+      : fallbackCards
+
+  // Build a slug lookup from service title → /services/[slug]
+  const slugMap: Record<string, string> = {}
+  serviceLinks?.forEach(({ title, slug }) => {
+    slugMap[title.toLowerCase()] = `/services/${slug}`
+  })
+
+  const getTagLink = (tag: string) => slugMap[tag.toLowerCase()] || null
 
   return (
     <section className="bg-[#212121]">
@@ -123,31 +132,39 @@ export default function Solutions({ data }: SolutionsProps) {
               {/* Description */}
               <p className="mb-6 text-[16px]!">{card.description}</p>
 
-              {/* Tags */}
+              {/* Tags — linked if service slug found */}
               <div className="flex flex-wrap gap-2 mb-8">
-                {card.tags.map((tag, j) => (
-                  <span
-                    key={j}
-                    className="border border-[#333333] rounded-none px-3 py-1.5"
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontWeight: 500,
-                      fontSize: '14px',
-                      lineHeight: '100%',
-                      textTransform: 'capitalize',
-                      color: '#6B6B6B',
-                    }}
-                  >
-                    {tag}
-                  </span>
-                ))}
+                {card.tags.map((tag, j) => {
+                  const href = getTagLink(tag)
+                  const tagStyle: React.CSSProperties = {
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: 500,
+                    fontSize: '14px',
+                    lineHeight: '100%',
+                    color: '#6B6B6B',
+                  }
+                  return href ? (
+                    <a
+                      key={j}
+                      href={href}
+                      className="border border-[#333333] rounded-none px-3 py-1.5 hover:border-[#FF7100] hover:text-[#FF7100] transition-colors"
+                      style={tagStyle}
+                    >
+                      {tag}
+                    </a>
+                  ) : (
+                    <span
+                      key={j}
+                      className="border border-[#333333] rounded-none px-3 py-1.5"
+                      style={tagStyle}
+                    >
+                      {tag}
+                    </span>
+                  )
+                })}
               </div>
             </div>
 
-            {/* Learn More */}
-            <a href={card.link} className="link-learn-more text-[16px]! text-white self-start mb-4">
-              Learn More
-            </a>
           </div>
         ))}
       </div>

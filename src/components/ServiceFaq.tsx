@@ -10,6 +10,7 @@ interface FaqItem {
 interface ServiceFaqProps {
   sectionTitle?: string
   items?: FaqItem[]
+  center?: boolean
 }
 
 const grotesk = { fontFamily: "'Space Grotesk', sans-serif" }
@@ -53,11 +54,52 @@ const fallbackItems: FaqItem[] = [
   },
 ]
 
-export default function ServiceFaq({ sectionTitle, items }: ServiceFaqProps) {
+export default function ServiceFaq({ sectionTitle, items, center }: ServiceFaqProps) {
   const title = sectionTitle || 'Frequently Asked Questions'
   const faqs = items && items.length > 0 ? items : fallbackItems
 
   const [open, setOpen] = useState<number>(0)
+
+  if (center) {
+    return (
+      <div className="border-b border-[#CCCCCC]">
+        <div className="px-6 md:px-8 py-10 md:py-14 text-center border-b border-[#CCCCCC]">
+          <h2 style={grotesk}>{title}</h2>
+        </div>
+        <div className="max-w-3xl mx-auto w-full">
+          {faqs.map((faq, i) => {
+            const isOpen = open === i
+            return (
+              <div key={i} className="border-b border-[#CCCCCC] last:border-b-0">
+                <button
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  className="w-full flex items-center justify-between px-6 md:px-8 py-5 text-left transition-colors duration-200 hover:bg-[#f9f5ee] cursor-pointer"
+                >
+                  <span className="text-[18px]! md:text-[20px]! font-medium text-[#212121]! pr-4" style={grotesk}>
+                    {faq.question}
+                  </span>
+                  <span
+                    className="shrink-0 text-[20px] leading-none text-[#212121] transition-transform duration-200"
+                    style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}
+                  >
+                    +
+                  </span>
+                </button>
+                <div
+                  className="overflow-hidden transition-all duration-300 ease-in-out"
+                  style={{ maxHeight: isOpen ? '400px' : '0px', opacity: isOpen ? 1 : 0 }}
+                >
+                  <p className="px-6 md:px-8 pb-6 text-[15px]! leading-[20px]! md:text-[16px]! md:leading-[22px]! text-[#6B6B6B]!" style={inter}>
+                    {faq.answer}
+                  </p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="border-b border-[#CCCCCC]">
@@ -82,7 +124,7 @@ export default function ServiceFaq({ sectionTitle, items }: ServiceFaqProps) {
                   className="w-full flex items-center justify-between px-6 md:px-8 py-5 text-left transition-colors duration-200 hover:bg-[#f9f5ee] cursor-pointer"
                 >
                   <span
-                    className="text-[18px]! md:text-[22px]! font-medium text-[#212121]! pr-4"
+                    className="text-[18px]! md:text-[20px]! font-medium text-[#212121]! pr-4"
                     style={grotesk}
                   >
                     {faq.question}
@@ -101,7 +143,7 @@ export default function ServiceFaq({ sectionTitle, items }: ServiceFaqProps) {
                   style={{ maxHeight: isOpen ? '400px' : '0px', opacity: isOpen ? 1 : 0 }}
                 >
                   <p
-                    className="px-6 md:px-8 pb-6 text-[16px]! leading-[20px]! md:text-[18px]! md:leading-[22px]! text-[#6B6B6B]!"
+                    className="px-6 md:px-8 pb-6 text-[15px]! leading-[20px]! md:text-[16px]! md:leading-[22px]! text-[#6B6B6B]!"
                     style={inter}
                   >
                     {faq.answer}

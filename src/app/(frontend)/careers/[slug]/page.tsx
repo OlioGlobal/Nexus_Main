@@ -6,6 +6,12 @@ import Divider from '@/components/Divider'
 import JobApplicationForm from '@/components/JobApplicationForm'
 import '../../blogs/blogs.css'
 
+export async function generateStaticParams() {
+  const payload = await getPayload({ config: configPromise })
+  const result = await payload.find({ collection: 'jobs', limit: 200 })
+  return result.docs.map((doc: any) => ({ slug: doc.slug }))
+}
+
 interface Props {
   params: Promise<{ slug: string }>
 }

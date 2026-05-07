@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache'
 import type { CollectionConfig } from 'payload'
 
 const isAdmin = ({ req: { user } }: { req: { user: any } }) => {
@@ -15,6 +16,18 @@ export const Categories: CollectionConfig = {
     create: isAdmin,
     update: isAdmin,
     delete: isAdmin,
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidatePath('/blogs')
+      },
+    ],
+    afterDelete: [
+      () => {
+        revalidatePath('/blogs')
+      },
+    ],
   },
   fields: [
     {

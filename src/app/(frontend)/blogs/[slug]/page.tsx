@@ -8,6 +8,12 @@ import Divider from '@/components/Divider'
 import '../blogs.css'
 import { getMediaUrl } from '@/lib/getMediaUrl'
 
+export async function generateStaticParams() {
+  const payload = await getPayload({ config: configPromise })
+  const result = await payload.find({ collection: 'posts', limit: 500 })
+  return result.docs.map((doc: any) => ({ slug: doc.slug }))
+}
+
 interface Props {
   params: Promise<{ slug: string }>
 }

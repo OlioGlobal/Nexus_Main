@@ -280,6 +280,40 @@ li {
   line-height: 100%;
 }
 
+/* ── Carousel slide-in from left ── */
+
+.carousel-section .carousel-animate {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.carousel-section.carousel-visible .carousel-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+.carousel-section .carousel-animate-delay {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s ease-out 0.15s, transform 0.6s ease-out 0.15s;
+}
+.carousel-section.carousel-visible .carousel-animate-delay {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── FadeIn scroll animation ── */
+
+.fadein-ready {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+
+.fadein-ready.fadein-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── Challenges Conclusion Rich Text ── */
 
 .challenges-conclusion p {

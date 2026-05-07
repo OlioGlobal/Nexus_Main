@@ -1,0 +1,70 @@
+<svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="3.5" y="0.5" width="63" height="63" stroke="#FF7100" stroke-opacity="0.2"/>
+<rect x="4.5" y="1.5" width="61" height="61" stroke="#FF7100" stroke-opacity="0.2"/>
+<g opacity="0.2">
+<mask id="path-4-inside-1_2300_422" fill="white">
+<path d="M8 5H21.5V18.5H8V5Z"/>
+</mask>
+<path d="M21.5 18.5V19.5H22.5V18.5H21.5ZM21.5 5H20.5V18.5H21.5H22.5V5H21.5ZM21.5 18.5V17.5H8V18.5V19.5H21.5V18.5Z" fill="#FF7100" mask="url(#path-4-inside-1_2300_422)"/>
+<mask id="path-6-inside-2_2300_422" fill="white">
+<path d="M21.5 5H35V18.5H21.5V5Z"/>
+</mask>
+<path d="M35 18.5V19.5H36V18.5H35ZM35 5H34V18.5H35H36V5H35ZM35 18.5V17.5H21.5V18.5V19.5H35V18.5Z" fill="#FF7100" mask="url(#path-6-inside-2_2300_422)"/>
+<mask id="path-8-inside-3_2300_422" fill="white">
+<path d="M35 5H48.5V18.5H35V5Z"/>
+</mask>
+<path d="M48.5 18.5V19.5H49.5V18.5H48.5ZM48.5 5H47.5V18.5H48.5H49.5V5H48.5ZM48.5 18.5V17.5H35V18.5V19.5H48.5V18.5Z" fill="#FF7100" mask="url(#path-8-inside-3_2300_422)"/>
+<mask id="path-10-inside-4_2300_422" fill="white">
+<path d="M48.5 5H62V18.5H48.5V5Z"/>
+</mask>
+<path d="M62 18.5V17.5H48.5V18.5V19.5H62V18.5Z" fill="#FF7100" mask="url(#path-10-inside-4_2300_422)"/>
+<mask id="path-12-inside-5_2300_422" fill="white">
+<path d="M8 18.5H21.5V32H8V18.5Z"/>
+</mask>
+<path d="M21.5 32V33H22.5V32H21.5ZM21.5 18.5H20.5V32H21.5H22.5V18.5H21.5ZM21.5 32V31H8V32V33H21.5V32Z" fill="#FF7100" mask="url(#path-12-inside-5_2300_422)"/>
+<mask id="path-14-inside-6_2300_422" fill="white">
+<path d="M21.5 18.5H35V32H21.5V18.5Z"/>
+</mask>
+<path d="M35 32V33H36V32H35ZM35 18.5H34V32H35H36V18.5H35ZM35 32V31H21.5V32V33H35V32Z" fill="#FF7100" mask="url(#path-14-inside-6_2300_422)"/>
+<mask id="path-16-inside-7_2300_422" fill="white">
+<path d="M35 18.5H48.5V32H35V18.5Z"/>
+</mask>
+<path d="M48.5 32V33H49.5V32H48.5ZM48.5 18.5H47.5V32H48.5H49.5V18.5H48.5ZM48.5 32V31H35V32V33H48.5V32Z" fill="#FF7100" mask="url(#path-16-inside-7_2300_422)"/>
+<mask id="path-18-inside-8_2300_422" fill="white">
+<path d="M48.5 18.5H62V32H48.5V18.5Z"/>
+</mask>
+<path d="M62 32V31H48.5V32V33H62V32Z" fill="#FF7100" mask="url(#path-18-inside-8_2300_422)"/>
+<mask id="path-20-inside-9_2300_422" fill="white">
+<path d="M8 32H21.5V45.5H8V32Z"/>
+</mask>
+<path d="M21.5 45.5V46.5H22.5V45.5H21.5ZM21.5 32H20.5V45.5H21.5H22.5V32H21.5ZM21.5 45.5V44.5H8V45.5V46.5H21.5V45.5Z" fill="#FF7100" mask="url(#path-20-inside-9_2300_422)"/>
+<mask id="path-22-inside-10_2300_422" fill="white">
+<path d="M21.5 32H35V45.5H21.5V32Z"/>
+</mask>
+<path d="M35 45.5V46.5H36V45.5H35ZM35 32H34V45.5H35H36V32H35ZM35 45.5V44.5H21.5V45.5V46.5H35V45.5Z" fill="#FF7100" mask="url(#path-22-inside-10_2300_422)"/>
+<mask id="path-24-inside-11_2300_422" fill="white">
+<path d="M35 32H48.5V45.5H35V32Z"/>
+</mask>
+<path d="M48.5 45.5V46.5H49.5V45.5H48.5ZM48.5 32H47.5V45.5H48.5H49.5V32H48.5ZM48.5 45.5V44.5H35V45.5V46.5H48.5V45.5Z" fill="#FF7100" mask="url(#path-24-inside-11_2300_422)"/>
+<mask id="path-26-inside-12_2300_422" fill="white">
+<path d="M48.5 32H62V45.5H48.5V32Z"/>
+</mask>
+<path d="M62 45.5V44.5H48.5V45.5V46.5H62V45.5Z" fill="#FF7100" mask="url(#path-26-inside-12_2300_422)"/>
+<mask id="path-28-inside-13_2300_422" fill="white">
+<path d="M8 45.5H21.5V59H8V45.5Z"/>
+</mask>
+<path d="M21.5 45.5H20.5V59H21.5H22.5V45.5H21.5Z" fill="#FF7100" mask="url(#path-28-inside-13_2300_422)"/>
+<mask id="path-30-inside-14_2300_422" fill="white">
+<path d="M21.5 45.5H35V59H21.5V45.5Z"/>
+</mask>
+<path d="M35 45.5H34V59H35H36V45.5H35Z" fill="#FF7100" mask="url(#path-30-inside-14_2300_422)"/>
+<mask id="path-32-inside-15_2300_422" fill="white">
+<path d="M35 45.5H48.5V59H35V45.5Z"/>
+</mask>
+<path d="M48.5 45.5H47.5V59H48.5H49.5V45.5H48.5Z" fill="#FF7100" mask="url(#path-32-inside-15_2300_422)"/>
+</g>
+<rect y="59" width="8" height="8" fill="#FF7100"/>
+<path d="M27 24H43V24V40V40H27V40V24V24V24" stroke="#FF7100"/>
+<path d="M23 24V20H27M43 20H47V24M47 40V44H43M27 44H23V40" stroke="#FF7100"/>
+<path d="M33 32C33 33.1038 33.8962 34 35 34C36.1038 34 37 33.1038 37 32C37 30.8962 36.1038 30 35 30C33.8962 30 33 30.8962 33 32Z" fill="#FF7100"/>
+</svg>

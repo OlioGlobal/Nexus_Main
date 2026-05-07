@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache'
 import type { CollectionConfig } from 'payload'
 import {
   lexicalEditor,
@@ -60,6 +61,16 @@ export const Posts: CollectionConfig = {
             .replace(/(^-|-$)/g, '')
         }
         return data
+      },
+    ],
+    afterChange: [
+      ({ doc }) => {
+        revalidatePath('/blogs', 'layout')
+      },
+    ],
+    afterDelete: [
+      ({ doc }) => {
+        revalidatePath('/blogs', 'layout')
       },
     ],
   },

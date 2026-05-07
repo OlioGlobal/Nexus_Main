@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache'
 import type { GlobalConfig } from 'payload'
 
 export const HomePage: GlobalConfig = {
@@ -6,6 +7,16 @@ export const HomePage: GlobalConfig = {
   access: {
     read: () => true,
     update: ({ req: { user } }) => user?.role === 'admin',
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        revalidatePath('/')
+        revalidatePath('/company')
+        revalidatePath('/industries')
+        revalidatePath('/services', 'layout')
+      },
+    ],
   },
   fields: [
     {

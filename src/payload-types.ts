@@ -77,6 +77,7 @@ export interface Config {
     'job-applications': JobApplication;
     'case-studies': CaseStudy;
     services: Service;
+    'industry-pages': IndustryPage;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -94,6 +95,7 @@ export interface Config {
     'job-applications': JobApplicationsSelect<false> | JobApplicationsSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
+    'industry-pages': IndustryPagesSelect<false> | IndustryPagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -889,6 +891,199 @@ export interface Service {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "industry-pages".
+ */
+export interface IndustryPage {
+  id: string;
+  /**
+   * Industry page title (e.g. "Technology Solutions for Industrial Machinery Manufacturers")
+   */
+  title: string;
+  /**
+   * Auto-generated from title
+   */
+  slug?: string | null;
+  status?: ('draft' | 'published') | null;
+  /**
+   * Short description shown below the title in the hero
+   */
+  heroDescription?: string | null;
+  /**
+   * Primary CTA button label
+   */
+  heroCta1Text?: string | null;
+  /**
+   * Primary CTA button URL
+   */
+  heroCta1Link?: string | null;
+  /**
+   * Secondary CTA button label (optional)
+   */
+  heroCta2Text?: string | null;
+  /**
+   * Secondary CTA button URL
+   */
+  heroCta2Link?: string | null;
+  /**
+   * Left-side sticky heading (e.g. "Why Tech Transformation and Smart Systems Work for Machine Manufacturing?")
+   */
+  overviewHeading?: string | null;
+  /**
+   * Right-side content — paragraphs, lists, etc.
+   */
+  overviewContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * CTA button below overview content
+   */
+  overviewCtaText?: string | null;
+  /**
+   * CTA button URL
+   */
+  overviewCtaLink?: string | null;
+  /**
+   * Left sticky heading (e.g. "Challenges Faced by Industrial Machinery Manufacturers Today")
+   */
+  challengesTitle?: string | null;
+  /**
+   * Short paragraph below the heading on the left side
+   */
+  challengesDescription?: string | null;
+  /**
+   * Each item = one challenge with icon, title, and description
+   */
+  challengeItems?:
+    | {
+        /**
+         * SVG or PNG icon for this challenge
+         */
+        icon?: (string | null) | Media;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Small bracket label above the title (e.g. "[Solutions]")
+   */
+  solutionsLabel?: string | null;
+  /**
+   * Section heading (e.g. "Tailored Technology Solutions for Industrial Machinery Manufacturers")
+   */
+  solutionsTitle?: string | null;
+  /**
+   * Solution cards shown in the carousel
+   */
+  solutionItems?:
+    | {
+        /**
+         * Card image (add later)
+         */
+        image?: (string | null) | Media;
+        title: string;
+        description?: string | null;
+        /**
+         * Capability tags shown as chips
+         */
+        tags?:
+          | {
+              tag: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Section heading (e.g. "Real-World Applications in Industrial Machinery Manufacturing")
+   */
+  realWorldTitle?: string | null;
+  /**
+   * Application cards — 3 col top row, 2 col bottom row
+   */
+  realWorldItems?:
+    | {
+        icon?: (string | null) | Media;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Left sticky heading (e.g. "What You Gain with Industry-Specific Manufacturing Technology")
+   */
+  gainTitle?: string | null;
+  /**
+   * Benefit cards — 2 col grid, last card full width
+   */
+  gainItems?:
+    | {
+        icon?: (string | null) | Media;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Section heading (e.g. "Why Industrial Machinery Manufacturers Choose NeXus")
+   */
+  whyChooseTitle?: string | null;
+  /**
+   * Cards with image, title, description — 4 per row
+   */
+  whyChooseItems?:
+    | {
+        image?: (string | null) | Media;
+        title: string;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * CTA heading (e.g. "Let's Power Your Sales and Production with Smart Technology Solutions")
+   */
+  midCtaHeading?: string | null;
+  /**
+   * Short paragraph below the heading
+   */
+  midCtaDescription?: string | null;
+  /**
+   * CTA button label
+   */
+  midCtaButtonText?: string | null;
+  /**
+   * CTA button URL
+   */
+  midCtaButtonLink?: string | null;
+  /**
+   * Left heading
+   */
+  faqTitle?: string | null;
+  faqItems?:
+    | {
+        question: string;
+        answer?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -950,6 +1145,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'services';
         value: string | Service;
+      } | null)
+    | ({
+        relationTo: 'industry-pages';
+        value: string | IndustryPage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1330,6 +1529,91 @@ export interface ServicesSelect<T extends boolean = true> {
         whyItExists?: T;
         businessImpact?: T;
         riskMitigation?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "industry-pages_select".
+ */
+export interface IndustryPagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  status?: T;
+  heroDescription?: T;
+  heroCta1Text?: T;
+  heroCta1Link?: T;
+  heroCta2Text?: T;
+  heroCta2Link?: T;
+  overviewHeading?: T;
+  overviewContent?: T;
+  overviewCtaText?: T;
+  overviewCtaLink?: T;
+  challengesTitle?: T;
+  challengesDescription?: T;
+  challengeItems?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  solutionsLabel?: T;
+  solutionsTitle?: T;
+  solutionItems?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        description?: T;
+        tags?:
+          | T
+          | {
+              tag?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  realWorldTitle?: T;
+  realWorldItems?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  gainTitle?: T;
+  gainItems?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  whyChooseTitle?: T;
+  whyChooseItems?:
+    | T
+    | {
+        image?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  midCtaHeading?: T;
+  midCtaDescription?: T;
+  midCtaButtonText?: T;
+  midCtaButtonLink?: T;
+  faqTitle?: T;
+  faqItems?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
         id?: T;
       };
   updatedAt?: T;

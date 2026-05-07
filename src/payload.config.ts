@@ -17,6 +17,7 @@ import { JobApplications } from './collections/JobApplications'
 import { Resumes } from './collections/Resumes'
 import { CaseStudies } from './collections/CaseStudies'
 import { Services } from './collections/Services'
+import { IndustryPages } from './collections/IndustryPages'
 import { HomePage } from './globals/HomePage'
 
 const filename = fileURLToPath(import.meta.url)
@@ -48,7 +49,7 @@ export default buildConfig({
   cors: [process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'],
   // CSRF — block cross-origin form submissions
   csrf: [process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'],
-  collections: [Users, Media, Resumes, Leads, Categories, Posts, Jobs, JobApplications, CaseStudies, Services],
+  collections: [Users, Media, Resumes, Leads, Categories, Posts, Jobs, JobApplications, CaseStudies, Services, IndustryPages],
   globals: [HomePage],
   editor: lexicalEditor(),
   secret: (() => {
