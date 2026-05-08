@@ -6,6 +6,8 @@ import Divider from '@/components/Divider'
 import Benefits from '@/components/Benefits'
 import CareerCTA from '@/components/CareerCTA'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Careers | OlioNexus',
   description: "Do your life's best work at OlioNexus.",

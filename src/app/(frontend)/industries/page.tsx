@@ -11,6 +11,8 @@ import ServiceFaq from '@/components/ServiceFaq'
 import CTA from '@/components/CTA'
 import Divider from '@/components/Divider'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Industries | OlioNexus',
   description:

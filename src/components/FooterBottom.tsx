@@ -17,18 +17,20 @@ const fallbackColumns = [
   {
     title: 'Solutions',
     links: [
-      { label: 'Nexus.AI', href: '#' },
-      { label: 'Nexus.Build', href: '#' },
-      { label: 'Nexus.Labs', href: '#' },
+      { label: 'Nexus.AI', href: '/services' },
+      { label: 'Nexus.Build', href: '/services' },
+      { label: 'Nexus.Labs', href: '/services' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About', href: '#' },
-      { label: 'Careers', href: '#' },
-      { label: 'Blogs', href: '#' },
-      { label: 'Industries', href: '#' },
+      { label: 'About', href: '/company' },
+      { label: 'Careers', href: '/careers' },
+      { label: 'Blogs', href: '/blogs' },
+      { label: 'Industries', href: '/industries' },
+      { label: 'Case Studies', href: '/case-studies' },
+      { label: 'Awards', href: '/awards' },
     ],
   },
   {
@@ -42,8 +44,8 @@ const fallbackColumns = [
   {
     title: 'Legal',
     links: [
-      { label: 'Privacy Policy', href: '#' },
-      { label: 'Terms of Services', href: '#' },
+      { label: 'Privacy Policy', href: '/privacy-policy' },
+      { label: 'Terms of Services', href: '/terms' },
     ],
   },
 ]

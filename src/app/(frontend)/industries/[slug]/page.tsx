@@ -13,11 +13,7 @@ import ServiceFaq from '@/components/ServiceFaq'
 import Divider from '@/components/Divider'
 import FadeIn from '@/components/FadeIn'
 
-export async function generateStaticParams() {
-  const payload = await getPayload({ config: configPromise })
-  const result = await payload.find({ collection: 'industry-pages', limit: 100 })
-  return result.docs.map((doc: any) => ({ slug: doc.slug }))
-}
+export const dynamic = 'force-dynamic'
 
 interface Props {
   params: Promise<{ slug: string }>

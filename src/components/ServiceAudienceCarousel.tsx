@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { getMediaUrl } from '@/lib/getMediaUrl'
+import ReadMoreText from './ReadMoreText'
 import Autoplay from 'embla-carousel-autoplay'
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 
@@ -56,7 +57,7 @@ export default function ServiceAudienceCarousel({
   return (
     <div className="border-b border-[#CCCCCC]">
       {/* Section title */}
-      <div className="px-4 md:px-8 section-spacing border-b border-[#CCCCCC]">
+      <div className="px-4 md:px-8 section-spacing max-w-3xl border-b border-[#CCCCCC]">
         <h2 style={grotesk}>{title}</h2>
       </div>
 
@@ -100,12 +101,11 @@ export default function ServiceAudienceCarousel({
                       {card.title}
                     </h3>
                     {card.description && (
-                      <p
+                      <ReadMoreText
+                        text={card.description}
                         className="text-[14px]! leading-[22px]! md:text-[15px]! md:leading-[24px]! text-[#6B6B6B]!"
                         style={inter}
-                      >
-                        {card.description}
-                      </p>
+                      />
                     )}
                   </div>
                 </div>

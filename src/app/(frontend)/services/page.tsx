@@ -4,6 +4,8 @@ import ServiceCard from '@/components/ServiceCard'
 import Divider from '@/components/Divider'
 import { getMediaUrl } from '@/lib/getMediaUrl'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Services | OlioNexus',
   description:

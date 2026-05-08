@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import ReadMoreText from './ReadMoreText'
 
 interface UniqueItem {
   icon?: any
@@ -50,17 +51,17 @@ export default function ServiceUniqueSection({
               >
                 {/* Icon */}
                 {iconUrl ? (
-                  <div className="mb-6 h-16 flex items-end">
+                  <div className="mb-6 flex items-end">
                     <Image
                       src={iconUrl}
                       alt={item.title}
-                      width={500}
-                      height={500}
-                      className="w-auto h-18 object-contain"
+                      width={80}
+                      height={80}
+                      className="w-12 h-12 md:w-22 md:h-22 object-contain"
                     />
                   </div>
                 ) : (
-                  <div className="mb-6 h-16" />
+                  <div className="mb-6 h-12 md:h-22" />
                 )}
 
                 {/* Title */}
@@ -73,12 +74,11 @@ export default function ServiceUniqueSection({
 
                 {/* Description */}
                 {item.description && (
-                  <p
+                  <ReadMoreText
+                    text={item.description}
                     className="text-[14px]! leading-[20px] md:text-[16px]! md:leading-[24px] font-normal text-[#6B6B6B]!"
                     style={{ fontFamily: "'Inter', sans-serif" }}
-                  >
-                    {item.description}
-                  </p>
+                  />
                 )}
               </div>
             )

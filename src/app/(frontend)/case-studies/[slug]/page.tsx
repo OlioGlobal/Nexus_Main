@@ -7,11 +7,7 @@ import Divider from '@/components/Divider'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { getMediaUrl } from '@/lib/getMediaUrl'
 
-export async function generateStaticParams() {
-  const payload = await getPayload({ config: configPromise })
-  const result = await payload.find({ collection: 'case-studies', limit: 200 })
-  return result.docs.map((doc: any) => ({ slug: doc.slug }))
-}
+export const dynamic = 'force-dynamic'
 
 interface Props {
   params: Promise<{ slug: string }>

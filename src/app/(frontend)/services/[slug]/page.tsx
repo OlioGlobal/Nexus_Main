@@ -22,11 +22,7 @@ import Divider from '@/components/Divider'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { getMediaUrl } from '@/lib/getMediaUrl'
 
-export async function generateStaticParams() {
-  const payload = await getPayload({ config: configPromise })
-  const result = await payload.find({ collection: 'services', limit: 200 })
-  return result.docs.map((doc: any) => ({ slug: doc.slug }))
-}
+export const dynamic = 'force-dynamic'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -300,7 +296,7 @@ export default async function ServicePage({ params }: Props) {
       />
 
       {/* ── What We Deliver ── */}
-      {svc.whatWeDeliver && (
+      {(svc.whatWeDeliver as any)?.root?.children?.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr] border-b border-[#CCCCCC]">
           <div className="px-3 sm:px-4 md:px-8 pt-5 pb-1 md:py-10 md:border-r border-[#CCCCCC]">
             <p className={labelCls}>Deliverables</p>
@@ -311,20 +307,20 @@ export default async function ServicePage({ params }: Props) {
         </div>
       )}
 
-      {/* ── Divider ── */}
-      <Divider />
-
       {/* ── Deliverables Cards ── */}
-      <ServiceDeliverables
-        sectionTitle={svc.deliverablesSectionTitle}
-        sectionSubtitle={svc.deliverablesSectionSubtitle}
-        deliverables={svc.deliverables || []}
-      />
-
-      {/* ── Divider ── */}
-      <Divider />
+      {(svc.deliverables?.length ?? 0) > 0 && (
+        <>
+          <Divider />
+          <ServiceDeliverables
+            sectionTitle={svc.deliverablesSectionTitle}
+            sectionSubtitle={svc.deliverablesSectionSubtitle}
+            deliverables={svc.deliverables || []}
+          />
+        </>
+      )}
 
       {/* ── Business Impact Timeline ── */}
+      {(svc.timelineItems?.length ?? 0) > 0 && <Divider />}
       <ServiceTimeline
         sectionTitle={svc.timelineSectionTitle}
         sectionHighlight={svc.timelineSectionHighlight}

@@ -258,6 +258,7 @@ interface NavService {
 interface IndustryItem {
   name?: string
   description?: string
+  slug?: string | null
   icon?: { url?: string; alt?: string; cloudinary?: { secure_url?: string } } | null
 }
 
@@ -372,8 +373,8 @@ export default function Header({ industries = [], services = [] }: { industries?
               )}
             </div>
 
-            <Link href="#" className="nav-link text-[16px]!">
-              Company <span className="text-[10px] ml-0.5">&#9662;</span>
+            <Link href="/company" className="nav-link text-[16px]!">
+              Company
             </Link>
 
             {/* Industries with dropdown */}
@@ -407,14 +408,8 @@ export default function Header({ industries = [], services = [] }: { industries?
                           const isLastCol = (i + 1) % 4 === 0
                           const totalRows = Math.ceil(industries.length / 4)
                           const isLastRow = i >= (totalRows - 1) * 4
-                          return (
-                            <div
-                              key={i}
-                              className={`group flex flex-col items-center justify-center p-5 min-h-48 text-center transition-colors duration-300 hover:bg-[#212121] cursor-default
-                                ${!isLastCol ? 'border-r border-[#CCCCCC]' : ''}
-                                ${!isLastRow ? 'border-b border-[#CCCCCC]' : ''}
-                              `}
-                            >
+                          const content = (
+                            <>
                               {iconUrl ? (
                                 <Image
                                   src={iconUrl}
@@ -436,6 +431,24 @@ export default function Header({ industries = [], services = [] }: { industries?
                                   {ind.description}
                                 </p>
                               )}
+                            </>
+                          )
+                          const cls = `group flex flex-col items-center justify-center p-5 min-h-48 text-center transition-colors duration-300 hover:bg-[#212121]
+                            ${!isLastCol ? 'border-r border-[#CCCCCC]' : ''}
+                            ${!isLastRow ? 'border-b border-[#CCCCCC]' : ''}
+                          `
+                          return ind.slug ? (
+                            <Link
+                              key={i}
+                              href={`/industries/${ind.slug}`}
+                              className={cls}
+                              onClick={() => setIndustriesOpen(false)}
+                            >
+                              {content}
+                            </Link>
+                          ) : (
+                            <div key={i} className={cls}>
+                              {content}
                             </div>
                           )
                         })}
@@ -485,13 +498,17 @@ export default function Header({ industries = [], services = [] }: { industries?
         <div className="flex flex-col h-full px-[5%]">
           <div className="border-x border-[#CCCCCC] flex flex-col h-full">
             <nav className="flex flex-col flex-1">
-              {['Solutions', 'Company', 'Industries', 'Case Studies', 'Blogs'].map((item) => (
+              {[
+                { label: 'Solutions', href: '/services' },
+                { label: 'Company', href: '/company' },
+                { label: 'Industries', href: '/industries' },
+                { label: 'Case Studies', href: '/case-studies' },
+                { label: 'Blogs', href: '/blogs' },
+              ].map((item) => (
                 <Link
-                  key={item}
-                  href={
-                    item === 'Case Studies' ? '/case-studies' : item === 'Blogs' ? '/blogs' : '#'
-                  }
-                  className="px-6 py-5 border-b border-[#CCCCCC] hover:text-[#088000] transition-colors"
+                  key={item.label}
+                  href={item.href}
+                  className="px-6 py-5 border-b border-[#CCCCCC] hover:text-[#E05C00] transition-colors"
                   style={{
                     ...grotesk,
                     fontWeight: 500,
@@ -501,7 +518,7 @@ export default function Header({ industries = [], services = [] }: { industries?
                   }}
                   onClick={() => setMobileOpen(false)}
                 >
-                  {item}
+                  {item.label}
                 </Link>
               ))}
             </nav>

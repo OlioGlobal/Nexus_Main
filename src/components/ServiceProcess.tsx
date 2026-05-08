@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import ReadMoreText from './ReadMoreText'
 
 interface ProcessStep {
   icon?: any
@@ -46,6 +47,8 @@ export default function ServiceProcess({
           {steps.map((step, i) => {
             const iconUrl = getMediaUrl(step.icon)
             const isRightCol = i % 2 === 1
+            const isOddTotal = steps.length % 2 === 1
+            const isLastItem = i === steps.length - 1
             const isLastRow = i >= steps.length - 2
 
             return (
@@ -55,22 +58,23 @@ export default function ServiceProcess({
                   'flex flex-col px-6 md:px-10 pt-8 pb-10',
                   'border-b border-[#CCCCCC]',
                   !isRightCol ? 'sm:border-r sm:border-[#CCCCCC]' : '',
-                  isLastRow ? 'sm:border-b-0' : '',
+                  isLastRow && !isOddTotal ? 'sm:border-b-0' : '',
+                  isLastItem && isOddTotal ? 'sm:border-b-0 sm:col-span-1' : '',
                 ].join(' ')}
               >
                 {/* Icon */}
                 {iconUrl ? (
-                  <div className="mb-5 h-20 flex items-end">
+                  <div className="mb-5 flex items-end">
                     <Image
                       src={iconUrl}
                       alt={step.title}
-                      width={64}
-                      height={64}
-                      className="w-auto h-14 md:h-20 object-contain"
+                      width={80}
+                      height={80}
+                      className="w-12 h-12 md:w-22 md:h-22 object-contain"
                     />
                   </div>
                 ) : (
-                  <div className="mb-5 h-14" />
+                  <div className="mb-5 h-12 md:h-22" />
                 )}
 
                 {/* Phase label */}
@@ -91,12 +95,11 @@ export default function ServiceProcess({
 
                 {/* Description */}
                 {step.description && (
-                  <p
+                  <ReadMoreText
+                    text={step.description}
                     className="text-[14px]! leading-[20px] md:text-[15px]! md:leading-[23px] font-normal text-[#6B6B6B]!"
                     style={{ fontFamily: "'Inter', sans-serif" }}
-                  >
-                    {step.description}
-                  </p>
+                  />
                 )}
               </div>
             )

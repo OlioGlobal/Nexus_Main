@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import ReadMoreText from './ReadMoreText'
 
 interface Principle {
   icon?: any
@@ -73,17 +74,17 @@ export default function ServiceThinkingModel({
               >
                 {/* Icon */}
                 {iconUrl ? (
-                  <div className="mb-6 h-20 flex items-end justify-center">
+                  <div className="mb-6 flex items-end justify-center">
                     <Image
                       src={iconUrl}
                       alt={p.title}
                       width={80}
                       height={80}
-                      className="w-auto h-16 object-contain"
+                      className="w-12 h-12 md:w-22 md:h-22 object-contain"
                     />
                   </div>
                 ) : (
-                  <div className="mb-6 h-20" />
+                  <div className="mb-6 h-12 md:h-22" />
                 )}
 
                 {/* Title */}
@@ -96,12 +97,11 @@ export default function ServiceThinkingModel({
 
                 {/* Description */}
                 {p.description && (
-                  <p
+                  <ReadMoreText
+                    text={p.description}
                     className="text-[14px] text-center leading-[20px] md:text-[16px]! md:leading-[22px] font-normal text-[#6B6B6B]"
                     style={{ fontFamily: "'Inter', sans-serif" }}
-                  >
-                    {p.description}
-                  </p>
+                  />
                 )}
               </div>
             )

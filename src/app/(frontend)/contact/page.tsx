@@ -1,6 +1,8 @@
 import Divider from '@/components/Divider'
 import ContactForm from '@/components/ContactForm'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Contact Us | OlioNexus',
   description: "Let's build the future, practically.",

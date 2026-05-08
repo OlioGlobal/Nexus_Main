@@ -120,7 +120,7 @@ export default function ServiceImpactStories({
                       src={getMediaUrl(story.image)}
                       alt={story.image?.alt || story.headline || ''}
                       fill
-                      className="object-cover"
+                      className="object-fill"
                       sizes="(max-width: 768px) 100vw, 40vw"
                     />
                   </div>

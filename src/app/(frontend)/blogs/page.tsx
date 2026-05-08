@@ -6,6 +6,8 @@ import BlogCategoryFilter from '@/components/BlogCategoryFilter'
 import Divider from '@/components/Divider'
 import { getMediaUrl } from '@/lib/getMediaUrl'
 
+export const dynamic = 'force-dynamic'
+
 interface Props {
   searchParams: Promise<{ category?: string }>
 }

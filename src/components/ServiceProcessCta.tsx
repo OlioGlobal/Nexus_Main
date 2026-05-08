@@ -52,7 +52,6 @@ export default function ServiceProcessCta({
           </div>
         )}
       </section>
-      <Divider />
     </>
   )
 }

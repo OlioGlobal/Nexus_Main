@@ -11,6 +11,8 @@ import Manifesto from '@/components/Manifesto'
 import Testimonials from '@/components/Testimonials'
 import CTA from '@/components/CTA'
 
+export const dynamic = 'force-dynamic'
+
 export default async function HomePage() {
   const payload = await getPayload({ config })
   const homeData = (await payload.findGlobal({ slug: 'home-page', depth: 2 })) as any

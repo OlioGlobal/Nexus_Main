@@ -8,6 +8,8 @@ import Testimonials from '@/components/Testimonials'
 import CTA from '@/components/CTA'
 import Divider from '@/components/Divider'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: 'Awards & Recognition | OlioNexus',
   description: 'Each Nexus award reflects a specific achievement — technology innovation, external validation, and service quality standards.',
