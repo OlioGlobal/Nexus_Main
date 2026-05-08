@@ -47,14 +47,18 @@ export const Services: CollectionConfig = {
     ],
     afterChange: [
       ({ doc }) => {
-        revalidatePath('/services', 'layout')
-        revalidatePath('/company')
+        try {
+          revalidatePath('/services', 'layout')
+          revalidatePath('/company')
+        } catch (_) {}
       },
     ],
     afterDelete: [
       ({ doc }) => {
-        revalidatePath('/services', 'layout')
-        revalidatePath('/company')
+        try {
+          revalidatePath('/services', 'layout')
+          revalidatePath('/company')
+        } catch (_) {}
       },
     ],
   },

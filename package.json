@@ -23,6 +23,8 @@
     "seed:faq-cta": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-faq-cta.ts",
     "seed:industries": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-industries.ts",
     "seed:industry-pages": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-industry-pages.ts",
+    "seed:service-slugs": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-service-slugs.ts",
+    "seed:amc-images": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-amc-images.ts",
     "migrate:case-studies": "cross-env NODE_OPTIONS=--no-deprecation tsx src/migrate-case-studies.ts",
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
