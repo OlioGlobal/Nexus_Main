@@ -120,7 +120,7 @@ export default function FooterBottom({ data }: FooterBottomProps) {
         </p>
         <div className="flex items-center gap-4">
           <Link
-            href="https://x.com"
+            href="https://x.com/OlioNexus"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#949494] hover:text-[#FEF9EF] transition-colors"
@@ -130,7 +130,7 @@ export default function FooterBottom({ data }: FooterBottomProps) {
             </svg>
           </Link>
           <Link
-            href="https://instagram.com"
+            href="https://www.instagram.com/olionexusofficial"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#949494] hover:text-[#FEF9EF] transition-colors"
@@ -140,7 +140,7 @@ export default function FooterBottom({ data }: FooterBottomProps) {
             </svg>
           </Link>
           <Link
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/company/olio-nexus/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[#949494] hover:text-[#FEF9EF] transition-colors"
