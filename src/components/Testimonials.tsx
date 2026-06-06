@@ -70,15 +70,17 @@ export default function Testimonials({ data }: TestimonialsProps) {
   const suffix = data?.headingSuffix || 'say about us'
   const items = data?.items && data.items.length > 0 ? data.items : fallbackItems
 
-  const [hovered, setHovered] = useState<number | null>(null)
+  // OLD HOVER STATE - KEEP FOR FUTURE USE
+  // const [hovered, setHovered] = useState<number | null>(null)
 
   return (
-    <section className="bg-[#212121]">
+    <section>
       {/* Header */}
       <div className="text-center section-spacing border-b border-[#333333]">
         <p className="section-title mb-4">{label}</p>
-        <h2 className="text-white! max-w-xl mx-auto text-center">
-          {heading} <span className="text-[#FF7100]">{highlight}</span> {suffix}
+        <h2 className="max-w-xl mx-auto text-center">
+          {heading} <span className="text-[#FF7100]">{highlight}</span>{' '}
+          {suffix}
         </h2>
       </div>
 
@@ -96,20 +98,27 @@ export default function Testimonials({ data }: TestimonialsProps) {
           }),
         ]}
       >
-        <CarouselContent className="-ml-0">
+        <CarouselContent className="ml-0">
           {items.map((item, i) => {
-            const isActive = hovered === i
+            // OLD HOVER LOGIC
+            // const isActive = hovered === i
+
             return (
               <CarouselItem
                 key={i}
-                className="pl-0 basis-[85%] sm:basis-1/2 md:basis-1/3"
+                className="pl-0 basis-[92%] sm:basis-1/2 md:basis-1/3"
               >
                 <div
-                  className="relative min-h-[400px] md:min-h-[500px] border-r border-[#333333] overflow-hidden"
-                  onMouseEnter={() => setHovered(i)}
-                  onMouseLeave={() => setHovered(null)}
+                  className="relative h-[500px] border-r border-[#333333] bg-[#212121] p-6 md:p-8 flex flex-col justify-between overflow-hidden"
+                  // OLD HOVER EVENTS
+                  // onMouseEnter={() => setHovered(i)}
+                  // onMouseLeave={() => setHovered(null)}
                 >
-                  {/* Background Image */}
+                  {/* ====================================================== */}
+                  {/* OLD IMAGE BACKGROUND CODE - COMMENTED FOR NOW */}
+                  {/* ====================================================== */}
+
+                  {/*
                   {getMediaUrl(item.image) ? (
                     <Image
                       src={getMediaUrl(item.image)}
@@ -120,16 +129,83 @@ export default function Testimonials({ data }: TestimonialsProps) {
                   ) : (
                     <div className="absolute inset-0 bg-[#333333]" />
                   )}
+                  */}
 
-                  {/* Gradient Overlay */}
+                  {/* ====================================================== */}
+                  {/* OLD GRADIENT OVERLAY - COMMENTED FOR NOW */}
+                  {/* ====================================================== */}
+
+                  {/*
                   <div
                     className="absolute inset-0"
                     style={{
-                      background: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)',
+                      background:
+                        'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%)',
                     }}
                   />
+                  */}
 
-                  {/* Quote overlay — visible on hover */}
+                  {/* ====================================================== */}
+                  {/* NEW DEFAULT VIEW - SHOW QUOTE DIRECTLY */}
+                  {/* ====================================================== */}
+
+                  <div>
+                    <Image
+                      src="/ui/quote.svg"
+                      alt=""
+                      width={32}
+                      height={24}
+                      className="mb-4 "
+                      aria-hidden="true"
+                    />
+
+                    <p
+                      style={{
+                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontWeight: 500,
+                        fontSize: '16px',
+                        lineHeight: '24px',
+                        letterSpacing: '-0.01em',
+                        color: '#FEF9EF!',
+                      }}
+                    >
+                      {item.quote}
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3
+                      className="mb-1"
+                      style={{
+                        fontFamily: "'Space Grotesk', sans-serif",
+                        fontWeight: 500,
+                        fontSize: '24px',
+                        lineHeight: '100%',
+                        color: '#FEF9EF',
+                      }}
+                    >
+                      {item.name}
+                    </h3>
+
+                    <p
+                      style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontWeight: 400,
+                        fontSize: '16px',
+                        lineHeight: '24px',
+                        letterSpacing: '-0.01em',
+                        color: '#999999',
+                      }}
+                    >
+                      {item.role}
+                    </p>
+                  </div>
+
+                  {/* ====================================================== */}
+                  {/* OLD HOVER QUOTE OVERLAY - COMMENTED FOR FUTURE USE */}
+                  {/* ====================================================== */}
+
+                  {/*
                   <div
                     className={`absolute inset-0 bg-[#212121] flex flex-col justify-between p-6 md:p-8 transition-opacity duration-500 ${
                       isActive ? 'opacity-100' : 'opacity-0'
@@ -185,8 +261,13 @@ export default function Testimonials({ data }: TestimonialsProps) {
                       </p>
                     </div>
                   </div>
+                  */}
 
-                  {/* Name & Role — visible when not hovered */}
+                  {/* ====================================================== */}
+                  {/* OLD NAME & ROLE OVERLAY - COMMENTED FOR FUTURE USE */}
+                  {/* ====================================================== */}
+
+                  {/*
                   <div
                     className={`absolute bottom-0 left-0 right-0 p-6 md:p-8 transition-opacity duration-500 ${
                       isActive ? 'opacity-0' : 'opacity-100'
@@ -217,6 +298,7 @@ export default function Testimonials({ data }: TestimonialsProps) {
                       {item.role}
                     </p>
                   </div>
+                  */}
                 </div>
               </CarouselItem>
             )

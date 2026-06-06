@@ -19,7 +19,7 @@ export default function RecognitionPress({ caseStudies }: RecognitionPressProps)
         <h2 className="h2">Industry Recognition &amp; Press</h2>
         <div className="flex gap-3 shrink-0">
           <a href="/case-studies" className="btn-primary text-sm!">See Our Work</a>
-          <a href="/blogs" className="btn-secondary text-sm!">Industry Insights</a>
+          {/* <a href="/blogs" className="btn-secondary text-sm!">Industry Insights</a> */}
         </div>
       </div>
 

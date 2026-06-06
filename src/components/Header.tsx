@@ -225,6 +225,7 @@ const industryIcons: Record<string, ReactElement> = {
   ),
 }
 
+
 const SERVICE_GROUPS = [
   {
     key: 'nexus-ai' as const,
@@ -262,10 +263,39 @@ interface IndustryItem {
   icon?: { url?: string; alt?: string; cloudinary?: { secure_url?: string } } | null
 }
 
+const COMPANY_MENU = [
+  {
+    title: 'Company Profile',
+    desc: 'Learn more about OlioNexus and our mission.',
+    href: '/company',
+    icon: '/company-profile/dropdownIcons/profile.svg',
+  },
+  {
+    title: 'Awards & Recognition',
+    desc: 'Our achievements and industry recognition.',
+    href: '/awards',
+    icon: '/company-profile/dropdownIcons/awards.svg',
+  },
+  {
+    title: 'Why Choose Olio',
+    desc: 'What makes us different from others.',
+    href: '/why-choose-olio-nexus',
+    icon: '/company-profile/dropdownIcons/why.svg',
+  },
+  {
+    title: 'Careers',
+    desc: 'Join our team and build the future.',
+    href: '/careers',
+    icon: '/company-profile/dropdownIcons/careers.svg',
+  },
+]
+
+
 export default function Header({ industries = [], services = [] }: { industries?: IndustryItem[]; services?: NavService[] }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const [industriesOpen, setIndustriesOpen] = useState(false)
+  const [companyOpen, setCompanyOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -372,11 +402,79 @@ export default function Header({ industries = [], services = [] }: { industries?
                 </div>
               )}
             </div>
+ 
+             {/* company with dropdown */}
+            <div      
+              className="relative"
+              onMouseEnter={() => {
+                if (timeoutRef.current) clearTimeout(timeoutRef.current)
+                setCompanyOpen(true)
+              }}
+              onMouseLeave={() => {
+                timeoutRef.current = setTimeout(() => setCompanyOpen(false), 100)
+              }}
+            >
+              <button className="nav-link flex items-center gap-1 text-[16px]!">
+                Company 
+              </button>
+                {companyOpen && (
+                <div
+                  className="fixed inset-0 top-16 z-40 backdrop-blur-sm bg-black/20"
+                  onMouseEnter={() => {
+                    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+                    setCompanyOpen(true)
+                  }}
+                  onMouseLeave={() => {
+                    timeoutRef.current = setTimeout(() => setCompanyOpen(false), 100)
+                  }}
+                >
+                  <div className="absolute left-0 right-0 top-4 px-[5%]">
+                    <div className="max-w-[1200px] mx-auto border border-[#CCCCCC] bg-background shadow-sm">
 
-            <Link href="/company" className="nav-link text-[16px]!">
-              Company
-            </Link>
+                      <div className="grid grid-cols-4">
+                        {COMPANY_MENU.map((item, i) => {
+                          const isLastCol = (i + 1) % 4 === 0
 
+                          return (
+                            <Link
+                              key={i}
+                              href={item.href}
+                              onClick={() => setCompanyOpen(false)}
+                              className={`
+                                group flex flex-col items-center justify-center p-5 min-h-48 text-center
+                                transition-colors duration-300 hover:bg-[#212121]
+                                ${!isLastCol ? 'border-r border-[#CCCCCC]' : ''}
+                              `}
+                            >
+                              {/* ICON (same behavior as industries) */}
+                              {item.icon && (
+                                <Image
+                                  src={item.icon}
+                                  alt={item.title}
+                                  width={40}
+                                  height={40}
+                                  className="h-9 w-9 object-contain mb-3 transition-all duration-300 group-hover:brightness-0 group-hover:invert"
+                                />
+                              )}
+
+                              <p className="font-['Space_Grotesk'] font-medium text-[13px] leading-[120%] text-[#212121] group-hover:text-white!">
+                                {item.title}
+                              </p>
+
+                              <p className="font-['Inter'] font-normal text-[13px] leading-[15px] text-[#949494] mt-1 group-hover:text-white/80!">
+                                {item.desc}
+                              </p>
+                            </Link>
+                          )
+                        })}
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                
+              )}
+              </div>
             {/* Industries with dropdown */}
             <div
               className="relative"
@@ -402,10 +500,10 @@ export default function Header({ industries = [], services = [] }: { industries?
                 >
                   <div className="absolute left-0 right-0 top-4 px-[5%]">
                     <div className="max-w-[1200px] mx-auto border border-[#CCCCCC] bg-background shadow-sm overflow-hidden">
-                      <div className="grid grid-cols-4">
+                      <div className="grid grid-cols-5">
                         {industries.map((ind, i) => {
                           const iconUrl = getMediaUrl(ind.icon)
-                          const isLastCol = (i + 1) % 4 === 0
+                          const isLastCol = (i + 1) % 5 === 0
                           const totalRows = Math.ceil(industries.length / 4)
                           const isLastRow = i >= (totalRows - 1) * 4
                           const content = (
@@ -461,9 +559,9 @@ export default function Header({ industries = [], services = [] }: { industries?
             <Link href="/case-studies" className="nav-link text-[16px]!">
               Case Studies
             </Link>
-            <Link href="/blogs" className="nav-link text-[16px]!">
+            {/* <Link href="/blogs" className="nav-link text-[16px]!">
               Blogs
-            </Link>
+            </Link> */}
           </nav>
 
           {/* Desktop CTA */}

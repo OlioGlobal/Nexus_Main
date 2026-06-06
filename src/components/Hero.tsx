@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import styles from './Hero.module.css'
+import Link from 'next/link'
 
 interface HeroProps {
   data?: {
@@ -25,9 +26,9 @@ export default function Hero({ data }: HeroProps) {
   const heroImageUrl = data?.heroImage?.url || '/ui/hero-svg.png'
   const heroImageAlt = data?.heroImage?.alt || 'Hero illustration'
   const primaryText = data?.primaryButtonText || 'Start a Conversation'
-  const primaryLink = data?.primaryButtonLink || '#'
+  const primaryLink = data?.primaryButtonLink || '/contact'
   const secondaryText = data?.secondaryButtonText || 'See Our Work'
-  const secondaryLink = data?.secondaryButtonLink || '#'
+  const secondaryLink = data?.secondaryButtonLink || '/case-studies'
 
   return (
     <section className="grid grid-cols-1 md:grid-cols-[3fr_2fr] section-divider">

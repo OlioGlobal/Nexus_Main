@@ -1,10 +1,13 @@
 const team = [
-  { name: 'Jane Doe', designation: 'Designation', image: '/company-profile/leadership/leader-1.png' },
-  { name: 'Jane Doe', designation: 'Designation', image: '/company-profile/leadership/leader-2.png' },
-  { name: 'Jane Doe', designation: 'Designation', image: '/company-profile/leadership/leader-3.png' },
-  { name: 'Jane Doe', designation: 'Designation', image: '/company-profile/leadership/leader-4.png' },
-  { name: 'Jane Doe', designation: 'Designation', image: '/company-profile/leadership/leader-5.png' },
-  { name: 'Jane Doe', designation: 'Designation', image: '/company-profile/leadership/leader-6.png' },
+  { name: 'Siddhesh Mane', designation: 'Co-Founder', image: '/company-profile/leadership/siddeshbmane.png' },
+  { name: 'Vanita Gaware', designation: 'Product Manager', image: '/company-profile/leadership/vanitagaware.png' },
+  { name: 'Pradeep Malviya', designation: 'Software Developer', image: '/company-profile/leadership/pradeepmalviya.png' },
+  { name: 'Yash Chaudhari', designation: 'Software Developer', image: '/company-profile/leadership/yash.png' },
+  { name: 'Mandar Kamble', designation: 'UI/UX Designer', image: '/company-profile/leadership/mandar.png' },
+  { name: 'Rahul Jadhav', designation: 'UI/UX Designer', image: '/company-profile/leadership/rahul.png' },
+  { name: 'Sakshi Sen', designation: 'Associate Developer', image: '/company-profile/leadership/sakshi.png' },
+  { name: 'Jayshree Ahire', designation: 'Product Delivery Associate', image: '/company-profile/leadership/jayshree.png' },
+  { name: 'Chetan Mahajan', designation: 'Jr.Developer', image: '/company-profile/leadership/chetan.png' },
 ]
 
 export default function LeadershipTeam() {

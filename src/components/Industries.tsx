@@ -35,10 +35,10 @@ export default function Industries({ data }: IndustriesProps) {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5">
         {items.map((item, i) => {
           const smBorderR = i % 2 === 0
-          const mdBorderR = i % 4 !== 3
+          const mdBorderR = i % 5 !== 4
 
           return (
             <div
