@@ -53,7 +53,7 @@ export default function IndustryProblems() {
         {problems.map((item, i) => (
           <div
             key={i}
-            className={`flex flex-col justify-between p-6 md:p-10 min-h-[260px]
+            className={`flex flex-col justify-between p-6 md:p-10 min-h-[200px] md:min-h-[260px]
               border-b border-[#CCCCCC]
               ${i < 2 ? 'sm:border-r border-[#CCCCCC]' : ''}
               ${i < 2 ? 'sm:border-b-0' : 'border-b-0'}

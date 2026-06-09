@@ -26,15 +26,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     group: s.group as 'nexus-build' | 'nexus-ai' | 'nexus-labs',
   }))
 
-  const industrySlugMap: Record<string, string> = {}
-  for (const ind of industriesData.docs as any[]) {
-    if (ind.title && ind.slug) industrySlugMap[ind.title] = ind.slug
-  }
-
-  const navIndustries = (homeData?.industries?.items || []).map((item: any) => ({
-    ...item,
-    slug: industrySlugMap[item.name] || null,
-  }))
+  const navIndustries = (industriesData.docs as any[])
+    .filter((ind) => ind.title && ind.slug)
+    .map((ind) => ({
+      name: ind.title,
+      slug: ind.slug,
+      icon: ind.icon || null,
+    }))
 
   return (
     <html lang="en">

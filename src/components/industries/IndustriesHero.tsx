@@ -25,8 +25,7 @@ export default function IndustriesHero() {
             regulations, and growth needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#industries" className="btn-primary">Explore Industries</a>
-            <a href="/contact" className="btn-secondary">Book a Consultation</a>
+            <a href="/contact" className="btn-primary">Book a Consultation</a>
           </div>
         </div>
       </div>

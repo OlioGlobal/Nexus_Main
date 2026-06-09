@@ -68,7 +68,7 @@ export default function NexusComparison() {
       <div className="overflow-x-auto">
         <div className="min-w-[1100px] grid grid-cols-4">
           {/* Headers */}
-          <HeaderCell>Lorem Ipsum</HeaderCell>
+          <HeaderCell>Comparison Criteria</HeaderCell>
           <HeaderCell>Generic Vendor</HeaderCell>
           <HeaderCell>Legacy Consultants</HeaderCell>
           <HeaderCell highlighted>Olio NeXus</HeaderCell>

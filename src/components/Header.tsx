@@ -22,44 +22,44 @@ const industryIcons: Record<string, ReactElement> = {
       <rect x="18" y="30" width="12" height="14" stroke="currentColor" strokeWidth="2" />
     </svg>
   ),
-  Insurance: (
-    <svg
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-    >
-      <path
-        d="M24 4L8 10V24C8 33 16 40 24 44C32 40 40 33 40 24V10L24 4Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16 24L21 29L32 18"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  ),
-  'Banking & Finance': (
-    <svg
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-    >
-      <rect x="4" y="20" width="40" height="4" stroke="currentColor" strokeWidth="2" />
-      <rect x="4" y="36" width="40" height="4" stroke="currentColor" strokeWidth="2" />
-      <rect x="8" y="24" width="4" height="12" stroke="currentColor" strokeWidth="2" />
-      <rect x="22" y="24" width="4" height="12" stroke="currentColor" strokeWidth="2" />
-      <rect x="36" y="24" width="4" height="12" stroke="currentColor" strokeWidth="2" />
-      <path d="M4 20L24 8L44 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  ),
-  'Education & EdTech': (
+  // Insurance: (
+  //   <svg
+  //     viewBox="0 0 48 48"
+  //     fill="none"
+  //     xmlns="http://www.w3.org/2000/svg"
+  //     className="w-full h-full"
+  //   >
+  //     <path
+  //       d="M24 4L8 10V24C8 33 16 40 24 44C32 40 40 33 40 24V10L24 4Z"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinejoin="round"
+  //     />
+  //     <path
+  //       d="M16 24L21 29L32 18"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinecap="round"
+  //       strokeLinejoin="round"
+  //     />
+  //   </svg>
+  // ),
+  // 'Banking & Finance': (
+  //   <svg
+  //     viewBox="0 0 48 48"
+  //     fill="none"
+  //     xmlns="http://www.w3.org/2000/svg"
+  //     className="w-full h-full"
+  //   >
+  //     <rect x="4" y="20" width="40" height="4" stroke="currentColor" strokeWidth="2" />
+  //     <rect x="4" y="36" width="40" height="4" stroke="currentColor" strokeWidth="2" />
+  //     <rect x="8" y="24" width="4" height="12" stroke="currentColor" strokeWidth="2" />
+  //     <rect x="22" y="24" width="4" height="12" stroke="currentColor" strokeWidth="2" />
+  //     <rect x="36" y="24" width="4" height="12" stroke="currentColor" strokeWidth="2" />
+  //     <path d="M4 20L24 8L44 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  //   </svg>
+  // ),
+  Education: (
     <svg
       viewBox="0 0 48 48"
       fill="none"
@@ -81,24 +81,24 @@ const industryIcons: Record<string, ReactElement> = {
       <path d="M44 18V30" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   ),
-  'E-commerce & Retail': (
-    <svg
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-    >
-      <path
-        d="M6 8H10L14 28H38L42 14H14"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="18" cy="36" r="3" stroke="currentColor" strokeWidth="2" />
-      <circle cx="34" cy="36" r="3" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  ),
+  // 'E-commerce & Retail': (
+  //   <svg
+  //     viewBox="0 0 48 48"
+  //     fill="none"
+  //     xmlns="http://www.w3.org/2000/svg"
+  //     className="w-full h-full"
+  //   >
+  //     <path
+  //       d="M6 8H10L14 28H38L42 14H14"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinecap="round"
+  //       strokeLinejoin="round"
+  //     />
+  //     <circle cx="18" cy="36" r="3" stroke="currentColor" strokeWidth="2" />
+  //     <circle cx="34" cy="36" r="3" stroke="currentColor" strokeWidth="2" />
+  //   </svg>
+  // ),
   Healthcare: (
     <svg
       viewBox="0 0 48 48"
@@ -110,53 +110,53 @@ const industryIcons: Record<string, ReactElement> = {
       <path d="M24 14V34M14 24H34" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   ),
-  Telecommunications: (
-    <svg
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-    >
-      <path
-        d="M8 40C8 40 14 28 24 28C34 28 40 40 40 40"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M2 32C2 32 10 14 24 14C38 14 46 32 46 32"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <path
-        d="M14 46C14 46 18 34 24 34C30 34 34 46 34 46"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <circle cx="24" cy="22" r="2" fill="currentColor" />
-    </svg>
-  ),
-  'IT & BPO': (
-    <svg
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-    >
-      <rect x="4" y="8" width="40" height="28" rx="2" stroke="currentColor" strokeWidth="2" />
-      <path d="M16 40H32M24 36V40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path
-        d="M14 20L18 24L14 28M22 28H30"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  ),
-  Manufacturing: (
+  // Telecommunications: (
+  //   <svg
+  //     viewBox="0 0 48 48"
+  //     fill="none"
+  //     xmlns="http://www.w3.org/2000/svg"
+  //     className="w-full h-full"
+  //   >
+  //     <path
+  //       d="M8 40C8 40 14 28 24 28C34 28 40 40 40 40"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinecap="round"
+  //     />
+  //     <path
+  //       d="M2 32C2 32 10 14 24 14C38 14 46 32 46 32"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinecap="round"
+  //     />
+  //     <path
+  //       d="M14 46C14 46 18 34 24 34C30 34 34 46 34 46"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinecap="round"
+  //     />
+  //     <circle cx="24" cy="22" r="2" fill="currentColor" />
+  //   </svg>
+  // ),
+  // 'IT & BPO': (
+  //   <svg
+  //     viewBox="0 0 48 48"
+  //     fill="none"
+  //     xmlns="http://www.w3.org/2000/svg"
+  //     className="w-full h-full"
+  //   >
+  //     <rect x="4" y="8" width="40" height="28" rx="2" stroke="currentColor" strokeWidth="2" />
+  //     <path d="M16 40H32M24 36V40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  //     <path
+  //       d="M14 20L18 24L14 28M22 28H30"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinecap="round"
+  //       strokeLinejoin="round"
+  //     />
+  //   </svg>
+  // ),
+  'Industrial & Manufacturing': (
     <svg
       viewBox="0 0 48 48"
       fill="none"
@@ -174,21 +174,21 @@ const industryIcons: Record<string, ReactElement> = {
       <rect x="34" y="28" width="6" height="8" stroke="currentColor" strokeWidth="2" />
     </svg>
   ),
-  'Government & Public Sector': (
-    <svg
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-    >
-      <path d="M4 44H44M4 20H44" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <path d="M24 8L44 20H4L24 8Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-      <rect x="10" y="20" width="6" height="24" stroke="currentColor" strokeWidth="2" />
-      <rect x="22" y="20" width="4" height="24" stroke="currentColor" strokeWidth="2" />
-      <rect x="32" y="20" width="6" height="24" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  ),
-  Hospitality: (
+  // 'Government & Public Sector': (
+  //   <svg
+  //     viewBox="0 0 48 48"
+  //     fill="none"
+  //     xmlns="http://www.w3.org/2000/svg"
+  //     className="w-full h-full"
+  //   >
+  //     <path d="M4 44H44M4 20H44" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  //     <path d="M24 8L44 20H4L24 8Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+  //     <rect x="10" y="20" width="6" height="24" stroke="currentColor" strokeWidth="2" />
+  //     <rect x="22" y="20" width="4" height="24" stroke="currentColor" strokeWidth="2" />
+  //     <rect x="32" y="20" width="6" height="24" stroke="currentColor" strokeWidth="2" />
+  //   </svg>
+  // ),
+  'Engineering & High-Tech': (
     <svg
       viewBox="0 0 48 48"
       fill="none"
@@ -205,24 +205,24 @@ const industryIcons: Record<string, ReactElement> = {
       <rect x="20" y="28" width="8" height="12" stroke="currentColor" strokeWidth="2" />
     </svg>
   ),
-  'Logistics & Transport': (
-    <svg
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-    >
-      <rect x="2" y="16" width="28" height="20" rx="1" stroke="currentColor" strokeWidth="2" />
-      <path
-        d="M30 24H38L46 32V36H30V24Z"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-      <circle cx="10" cy="38" r="4" stroke="currentColor" strokeWidth="2" />
-      <circle cx="38" cy="38" r="4" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  ),
+  // 'Logistics & Transport': (
+  //   <svg
+  //     viewBox="0 0 48 48"
+  //     fill="none"
+  //     xmlns="http://www.w3.org/2000/svg"
+  //     className="w-full h-full"
+  //   >
+  //     <rect x="2" y="16" width="28" height="20" rx="1" stroke="currentColor" strokeWidth="2" />
+  //     <path
+  //       d="M30 24H38L46 32V36H30V24Z"
+  //       stroke="currentColor"
+  //       strokeWidth="2"
+  //       strokeLinejoin="round"
+  //     />
+  //     <circle cx="10" cy="38" r="4" stroke="currentColor" strokeWidth="2" />
+  //     <circle cx="38" cy="38" r="4" stroke="currentColor" strokeWidth="2" />
+  //   </svg>
+  // ),
 }
 
 
@@ -298,6 +298,9 @@ export default function Header({ industries = [], services = [] }: { industries?
   const [companyOpen, setCompanyOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false)
+  const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false)
+  const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false)
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -334,7 +337,7 @@ export default function Header({ industries = [], services = [] }: { industries?
               onMouseLeave={closeDropdown}
             >
               <button className="nav-link flex items-center gap-1 text-[16px]!">
-                Solutions <span className="text-[10px]">&#9662;</span>
+                Solutions 
               </button>
 
               {/* Mega dropdown */}
@@ -420,6 +423,7 @@ export default function Header({ industries = [], services = [] }: { industries?
                 {companyOpen && (
                 <div
                   className="fixed inset-0 top-16 z-40 backdrop-blur-sm bg-black/20"
+                  onClick={() => setCompanyOpen(false)}
                   onMouseEnter={() => {
                     if (timeoutRef.current) clearTimeout(timeoutRef.current)
                     setCompanyOpen(true)
@@ -477,20 +481,27 @@ export default function Header({ industries = [], services = [] }: { industries?
               </div>
             {/* Industries with dropdown */}
             <div
-              className="relative"
-              onMouseEnter={() => {
-                if (timeoutRef.current) clearTimeout(timeoutRef.current)
-                setIndustriesOpen(true)
-              }}
-              onMouseLeave={() => {
-                timeoutRef.current = setTimeout(() => setIndustriesOpen(false), 100)
-              }}
-            >
-              <button className="nav-link flex items-center gap-1 text-[16px]!">Industries</button>
+                className="relative"
+                onMouseEnter={() => {
+                  if (timeoutRef.current) clearTimeout(timeoutRef.current)
+                  setIndustriesOpen(true)
+                }}
+                onMouseLeave={() => {
+                  timeoutRef.current = setTimeout(() => setIndustriesOpen(false), 100)
+                }}
+              >
+              <button
+                type="button"
+                onClick={() => setIndustriesOpen((prev) => !prev)}
+                className="nav-link flex items-center gap-1 text-[16px]!"
+              >
+                Industries
+              </button>
               {industriesOpen && industries.length > 0 && (
                 <div
                   className="fixed inset-0 top-16 z-40 backdrop-blur-sm bg-black/20"
-                  onMouseEnter={() => {
+                  onClick={() => setIndustriesOpen(false)}
+                   onMouseEnter={() => {
                     if (timeoutRef.current) clearTimeout(timeoutRef.current)
                     setIndustriesOpen(true)
                   }}
@@ -595,13 +606,13 @@ export default function Header({ industries = [], services = [] }: { industries?
       >
         <div className="flex flex-col h-full px-[5%]">
           <div className="border-x border-[#CCCCCC] flex flex-col h-full">
-            <nav className="flex flex-col flex-1">
+            {/* <nav className="flex flex-col flex-1">
               {[
                 { label: 'Solutions', href: '/services' },
                 { label: 'Company', href: '/company' },
                 { label: 'Industries', href: '/industries' },
                 { label: 'Case Studies', href: '/case-studies' },
-                { label: 'Blogs', href: '/blogs' },
+                // { label: 'Blogs', href: '/blogs' },
               ].map((item) => (
                 <Link
                   key={item.label}
@@ -619,7 +630,164 @@ export default function Header({ industries = [], services = [] }: { industries?
                   {item.label}
                 </Link>
               ))}
-            </nav>
+            </nav> */}
+            {/* solution accordion */}
+<nav className="flex flex-col flex-1 overflow-y-auto">
+
+              {/* Solutions */}
+              <div className="border-b border-[#CCCCCC]">
+                <button
+                  onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                  className="w-full px-6 py-5 flex items-center justify-between"
+                >
+                  <span
+                    style={grotesk}
+                    className="text-[20px] font-medium text-[#212121]"
+                  >
+                    Solutions
+                  </span>
+
+                  <span
+                    className={`transition-transform duration-300 ${
+                      mobileSolutionsOpen ? 'rotate-180' : ''
+                    }`}
+                  >
+                    ▼
+                  </span>
+                </button>
+
+                {mobileSolutionsOpen && (
+                  <div className="border-t border-[#CCCCCC]">
+                    {SERVICE_GROUPS.map((grp) => {
+                      const grpServices = services.filter(
+                        (s) => s.group === grp.key
+                      )
+
+                      return (
+                        <div
+                          key={grp.key}
+                          className="border-b border-[#CCCCCC] p-4"
+                        >
+                          <div className="flex items-center gap-2 mb-3">
+                            <span
+                              className="w-2 h-2 rounded-full"
+                              style={{ backgroundColor: grp.color }}
+                            />
+                            <h3 className="font-medium text-[20px]">
+                              {grp.name}
+                            </h3>
+                          </div>
+
+                          <p className="text-[14px] text-[#6B6B6B] mb-4">
+                            {grp.description}
+                          </p>
+
+                          <ul className="space-y-3">
+                            {grpServices.map((svc) => (
+                              <li key={svc.slug}>
+                                <Link
+                                  href={`/services/${svc.slug}`}
+                                  onClick={() => setMobileOpen(false)}
+                                  className="flex items-center gap-3"
+                                >
+                                  <span className="w-2 h-2 bg-[#CCCCCC]" />
+                                  {svc.title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+
+                        {/* company accordion */}
+
+                        <div className="border-b border-[#CCCCCC]">
+              <button
+                onClick={() => setMobileCompanyOpen(!mobileCompanyOpen)}
+                className="w-full px-6 py-5 flex items-center justify-between"
+              >
+                <span className="text-[20px] font-medium">
+                  Company
+                </span>
+
+                <span
+                  className={`transition-transform duration-300 ${
+                    mobileCompanyOpen ? 'rotate-180' : ''
+                  }`}
+                >
+                  ▼
+                </span>
+              </button>
+
+              {mobileCompanyOpen && (
+                <div>
+                  {COMPANY_MENU.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="flex items-center gap-3 px-6 py-4 border-t border-[#CCCCCC]"
+                    >
+                      <Image
+                        src={item.icon}
+                        alt={item.title}
+                        width={24}
+                        height={24}
+                      />
+
+                      <span>{item.title}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+                              <div className="border-b border-[#CCCCCC]">
+              <button
+                type="button"
+                onClick={() => setMobileIndustriesOpen((prev) => !prev)}
+                className="w-full px-6 py-5 flex items-center justify-between"
+              >
+                <span className="text-[20px] font-medium">
+                  Industries
+                </span>
+
+                <span
+                  className={`transition-transform duration-300 ${
+                    mobileIndustriesOpen ? 'rotate-180' : ''
+                  }`}
+                >
+                  ▼
+                </span>
+              </button>
+
+              {mobileIndustriesOpen && (
+                <div>
+                  {industries.map((ind, index) => (
+                    <Link
+                      key={ind.slug || ind.name || index}
+                      href={ind.slug ? `/industries/${ind.slug}` : '/industries'}
+                      onClick={() => setMobileOpen(false)}
+                      className="block px-6 py-4 border-t border-[#CCCCCC]"
+                    >
+                      {ind.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+            <Link
+              href="/case-studies"
+              className="px-6 py-5 text-[20px] font-medium border-b border-[#CCCCCC]"
+              onClick={() => setMobileOpen(false)}
+            >
+              Case Studies
+            </Link>
+     </nav>
             <div className="px-6 py-6 border-t border-[#CCCCCC]">
               <Link
                 href="/contact"

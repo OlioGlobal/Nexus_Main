@@ -36,7 +36,7 @@ export default function IndustriesCarousel({ data }: IndustriesCarouselProps) {
 
       {/* Carousel */}
       <Carousel
-        opts={{ align: 'start', loop: true }}
+        opts={{ align: 'start', loop: false }}
         plugins={[Autoplay({ delay: 2500, stopOnInteraction: false, stopOnMouseEnter: true })]}
       >
         <CarouselContent className="ml-0">

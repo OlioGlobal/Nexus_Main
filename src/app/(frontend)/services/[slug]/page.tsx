@@ -356,7 +356,7 @@ export default async function ServicePage({ params }: Props) {
       <Divider />
 
       {/* ── Resources & Insights ── */}
-      <ServiceResources posts={posts} />
+      {/* <ServiceResources posts={posts} /> */}
 
       {/* ── Divider ── */}
       <Divider />

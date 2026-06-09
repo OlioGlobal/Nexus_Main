@@ -1,5 +1,8 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 interface FooterBottomProps {
   data?: {
@@ -17,16 +20,16 @@ const fallbackColumns = [
   {
     title: 'Nexus AI',
     links: [
-      { label: 'AI Transformation Services', href: '/services/ai-consulting-services' },
-      { label: 'AI Consulting Services', href: '/services/ai-transformation-services' },
-      { label: 'AI Agents / Custom Automation', href: '/services/ai-agent-development-services' },
+      { label: 'AI Transformation Services', href: '/services/ai-transformation-services' },
+      { label: 'AI Consulting Services', href: '/services/ai-consulting-services' },
+      { label: 'AI Agents / Custom Automation', href: '/services/ai-agents-custom-automation' },
       { label: 'AI Implementation Services', href: '/services/ai-implementation-services' },
     ],
   },
   {
     title: 'Nexus Build',
     links: [
-      { label: 'Software Product Development', href: '/services/software-development-services' },
+      { label: 'Software Product Development', href: '/services/software-product-development' },
       { label: 'App Development', href: '/services/app-development-services' },
       { label: 'Website Development Services', href: '/services/website-development-services' },
       { label: 'UI/UX Consulting Services', href: '/services/ui-ux-consulting-services' },
@@ -34,7 +37,7 @@ const fallbackColumns = [
       { label: 'Product & MVP Development', href: '/services/product-mvp-development' },
       { label: 'Managed IT Services', href: '/services/managed-it-services' },
       { label: 'AMC Services', href: '/services/amc-services' },
-      { label: 'Resource Augmentation (Staffing) Services', href: '/services/resource-augmentation-services' },
+      { label: 'Resource Augmentation (Staffing) Services', href: '/services/resource-augmentation-staffing-services' },
     ],
   },
   {
@@ -61,10 +64,12 @@ const fallbackColumns = [
 export default function FooterBottom({ data }: FooterBottomProps) {
   const columns = data?.columns && data.columns.length > 0 ? data.columns : fallbackColumns
 
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
   return (
     <footer className="bg-[#212121]">
       {/* Links Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 border-t border-[#333333]">
+      <div className="grid grid-cols-1 md:grid-cols-4 border-t border-[#333333]">
         {columns.map((col, i) => (
           <div
             key={i}
@@ -72,8 +77,15 @@ export default function FooterBottom({ data }: FooterBottomProps) {
               i < columns.length - 1 ? 'border-r' : ''
             }`}
           >
+             {/*  CHANGE: make title clickable only on mobile */}
+            <div
+              className="flex justify-between items-center md:block"
+              onClick={() =>
+                setOpenIndex(openIndex === i ? null : i)
+              }
+            >
             <h4
-              className="mb-4  text-[16px] md:text-[18px]"
+              className="mb-0 md:mb-4 text-[16px] md:text-[18px]"
               style={{
                 fontFamily: "'Inter', sans-serif",
                 fontWeight: 500,
@@ -85,7 +97,32 @@ export default function FooterBottom({ data }: FooterBottomProps) {
             >
               {col.title}
             </h4>
-            <ul className="flex flex-col gap-3">
+
+             {/* CHANGE: dropdown indicator (mobile only) */}
+            
+                <svg
+                  className={`md:hidden w-4 h-4 transition-transform duration-300 text-[#949494] ${
+                    openIndex === i ? 'rotate-180' : 'rotate-0'
+                  }`}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6 9l6 6 6-6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+            </div>
+
+             <ul
+              className={`flex flex-col gap-3 mt-4 md:mt-0 overflow-hidden transition-all duration-300 ${
+                openIndex === i ? 'max-h-96' : 'max-h-0 md:max-h-none'
+              } md:flex md:flex-col`}
+            >
               {col.links?.map((item, j) => (
                 <li key={j}>
                   <Link
