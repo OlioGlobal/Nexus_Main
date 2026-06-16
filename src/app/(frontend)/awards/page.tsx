@@ -7,6 +7,8 @@ import WorkBehindRecognition from '@/components/awards/WorkBehindRecognition'
 import Testimonials from '@/components/Testimonials'
 import CTA from '@/components/CTA'
 import Divider from '@/components/Divider'
+import { getTestimonials } from '@/lib/getTestimonials'
+
 
 export const dynamic = 'force-dynamic'
 
@@ -28,6 +30,8 @@ export default async function AwardsPage() {
 
   const caseStudies = result.docs as any[]
 
+  const testimonials = await getTestimonials()
+
   return (
     <main>
       <AwardsHero />
@@ -36,12 +40,7 @@ export default async function AwardsPage() {
       <Divider />
       <RecognitionPress caseStudies={caseStudies} />
       <Divider />
-      <Testimonials data={{
-        label: '[Testimonials]',
-        heading: 'What Clients Have Said About',
-        headingHighlight: 'Our Work',
-        headingSuffix: '',
-      }} />
+      <Testimonials data={testimonials} />
       <Divider />
       <WorkBehindRecognition />
       <Divider />

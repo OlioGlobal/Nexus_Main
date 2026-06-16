@@ -26,10 +26,7 @@ export default function CompanyHero() {
           roadmaps to solve problems.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/services" className="btn-primary">
-            Explore Our Services
-          </a>
-          <a href="/contact" className="btn-secondary">
+          <a href="/contact" className="btn-primary">
             Let&apos;s Connect
           </a>
         </div>

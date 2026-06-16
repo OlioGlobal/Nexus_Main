@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { getTracking } from '@/lib/tracker'
 
 const budgetOptions = ['$10k-50k', '$50k-100k', '$100k-250k', '$250k+']
 const areaOptions = ['AI & Automation', 'Web Development', 'Mobile App', 'UI/UX Design', 'Consulting', 'Other']
@@ -50,11 +51,19 @@ export default function ContactForm() {
     setStatus('loading')
 
     try {
+      const tracking = getTracking()
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, source: 'contact-form' }),
-      })
+        body: JSON.stringify({ 
+          ...form,
+           formSource: 'contact-form',
+           ...tracking,
+            // Submission details
+            page: window.location.href,
+            timestamp: new Date().toISOString(),
+                  }),
+                })
 
       if (res.ok) {
         setStatus('success')

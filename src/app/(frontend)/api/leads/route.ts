@@ -7,7 +7,8 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { email, fullName, company, role, budget, area, message, source } = body
+    const { email, fullName, company, role, budget, area, message, source, medium, campaign,
+          referrer, landingPage, journey, page, timestamp,} = body
 
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 })
@@ -43,6 +44,34 @@ export async function POST(req: Request) {
     if (source && source.length > 100) {
       return NextResponse.json({ error: 'Source must be 100 characters or less' }, { status: 400 })
     }
+    // Medium
+    if (medium && medium.length > 100) {
+      return NextResponse.json({ error: 'Medium must be 100 characters or less' }, { status: 400 })
+    }
+    // Campaign
+    if (campaign && campaign.length > 150) {
+      return NextResponse.json({ error: 'Campaign must be 150 characters or less' }, { status: 400 })
+    }
+    // Referrer URL
+    if (referrer && referrer.length > 500) {
+      return NextResponse.json({ error: 'Referrer must be 500 characters or less' }, { status: 400 })
+    }
+    // Landing Page URL
+    if (landingPage && landingPage.length > 500) {
+      return NextResponse.json({ error: 'Landing page must be 500 characters or less' }, { status: 400 })
+    }
+    // Journey (can get long)
+    if (journey && journey.length > 1000) {
+      return NextResponse.json({ error: 'Journey must be 1000 characters or less' }, { status: 400 })
+    }
+    // Page
+    if (page && page.length > 500) {
+      return NextResponse.json({ error: 'Page must be 500 characters or less' }, { status: 400 })
+    }
+    // Timestamp (safety check)
+    if (timestamp && timestamp.length > 50) {
+      return NextResponse.json({ error: 'Timestamp must be 50 characters or less' }, { status: 400 })
+    }
 
     const payload = await getPayload({ config })
 
@@ -59,6 +88,32 @@ export async function POST(req: Request) {
         source: source || 'newsletter',
       },
     })
+
+    if (process.env.APPS_SCRIPT_URL) {
+  await fetch(process.env.APPS_SCRIPT_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email,
+      fullName,
+      company,
+      role,
+      budget,
+      area,
+      message,
+      source,
+      medium,
+      campaign,
+      referrer,
+      landingPage,
+      journey,
+      page,
+      timestamp,
+    }),
+  })
+}
 
     return NextResponse.json({ success: true })
   } catch (error) {

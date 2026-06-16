@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import FooterBottom from '@/components/FooterBottom'
 import ScrollToTop from '@/components/ScrollToTop'
+import TrackingProvider from '@/components/TrackingProvider'
 import './styles.css'
 
 export const metadata = {
@@ -37,6 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className="min-h-screen antialiased">
+        <TrackingProvider />
         <ScrollToTop />
         <Header industries={navIndustries} services={navServices} />
         <div className="section-outer">
