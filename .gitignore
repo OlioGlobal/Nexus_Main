@@ -52,3 +52,6 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# large local video (served from Cloudinary)
+/public/temp/vecteezy_discussion-with-a-real-estate-agent-house-model-with-agent_15122040.mp4

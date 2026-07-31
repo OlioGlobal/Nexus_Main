@@ -11,10 +11,16 @@ export const HomePage: GlobalConfig = {
   hooks: {
     afterChange: [
       () => {
-        revalidatePath('/')
-        revalidatePath('/company')
-        revalidatePath('/industries')
-        revalidatePath('/services', 'layout')
+        // revalidatePath only works inside a Next.js request context.
+        // Guard it so local scripts (seeds) can update this global without crashing.
+        try {
+          revalidatePath('/')
+          revalidatePath('/company')
+          revalidatePath('/industries')
+          revalidatePath('/services', 'layout')
+        } catch {
+          // Not in a request context (e.g. a seed script) — safe to ignore.
+        }
       },
     ],
   },
@@ -113,6 +119,70 @@ export const HomePage: GlobalConfig = {
               required: true,
             },
           ],
+        },
+      ],
+    },
+    {
+      name: 'video',
+      type: 'group',
+      label: 'Video Section',
+      fields: [
+        {
+          name: 'enabled',
+          type: 'checkbox',
+          label: 'Show Video Section',
+          defaultValue: true,
+        },
+        {
+          name: 'label',
+          type: 'text',
+          label: 'Section Label',
+          defaultValue: '[Showcase]',
+        },
+        {
+          name: 'heading',
+          type: 'text',
+          label: 'Heading',
+          defaultValue: 'See how we work',
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          label: 'Description',
+        },
+        {
+          name: 'video',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Video File (mp4 / webm)',
+          admin: {
+            description:
+              'Upload an .mp4 or .webm. Deleting the file here also removes it from Cloudinary automatically.',
+          },
+        },
+        {
+          name: 'poster',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'Poster Image (shown before play)',
+        },
+        {
+          name: 'autoplay',
+          type: 'checkbox',
+          label: 'Autoplay (muted)',
+          defaultValue: true,
+        },
+        {
+          name: 'loop',
+          type: 'checkbox',
+          label: 'Loop',
+          defaultValue: true,
+        },
+        {
+          name: 'muted',
+          type: 'checkbox',
+          label: 'Start Muted',
+          defaultValue: true,
         },
       ],
     },
@@ -416,10 +486,21 @@ export const HomePage: GlobalConfig = {
               required: true,
             },
             {
+              name: 'company',
+              type: 'text',
+              label: 'Company (shown on the logo card)',
+            },
+            {
               name: 'image',
               type: 'upload',
               relationTo: 'media',
-              label: 'Client Photo',
+              label: 'Client Photo (optional — hidden if empty)',
+            },
+            {
+              name: 'logo',
+              type: 'upload',
+              relationTo: 'media',
+              label: 'Company Logo (for the selector card)',
             },
           ],
         },

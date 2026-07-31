@@ -84,13 +84,15 @@ export default function Solutions({ data, serviceLinks }: SolutionsProps) {
         }))
       : fallbackCards
 
-  // Build a slug lookup from service title → /services/[slug]
+  // Build a slug lookup from service title → /services/[slug].
+  // Normalize (lowercase + collapse whitespace) so minor formatting differences still match.
+  const normalize = (s: string) => s.toLowerCase().replace(/\s+/g, ' ').trim()
   const slugMap: Record<string, string> = {}
   serviceLinks?.forEach(({ title, slug }) => {
-    slugMap[title.toLowerCase()] = `/services/${slug}`
+    slugMap[normalize(title)] = `/services/${slug}`
   })
 
-  const getTagLink = (tag: string) => slugMap[tag.toLowerCase()] || null
+  const getTagLink = (tag: string) => slugMap[normalize(tag)] || null
 
   return (
     <section className="bg-[#212121]">
@@ -147,7 +149,7 @@ export default function Solutions({ data, serviceLinks }: SolutionsProps) {
                     <a
                       key={j}
                       href={href}
-                      className="border border-[#333333] rounded-none px-3 py-1.5 hover:border-[#FF7100] hover:text-[#FF7100] transition-colors"
+                      className="border border-dashed border-[#555555] rounded-none px-3 py-1.5 hover:border-[#FF7100] hover:text-[#FF7100] transition-colors"
                       style={tagStyle}
                     >
                       {tag}
@@ -155,7 +157,7 @@ export default function Solutions({ data, serviceLinks }: SolutionsProps) {
                   ) : (
                     <span
                       key={j}
-                      className="border border-[#333333] rounded-none px-3 py-1.5"
+                      className="border border-dashed border-[#555555] rounded-none px-3 py-1.5"
                       style={tagStyle}
                     >
                       {tag}

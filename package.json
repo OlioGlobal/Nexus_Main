@@ -13,6 +13,8 @@
     "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "seed:reviews": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-reviews.ts",
+    "seed:video": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-video.ts",
     "seed:blogs": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-blogs.ts",
     "seed:blog-images": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-blog-images.ts",
     "seed:jobs": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-jobs.ts",

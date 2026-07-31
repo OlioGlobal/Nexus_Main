@@ -309,13 +309,27 @@ export default function Header({ industries = [], services = [] }: { industries?
     }
   }, [mobileOpen])
 
-  const openDropdown = () => {
+  const clearCloseTimer = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    setDropdownOpen(true)
   }
 
-  const closeDropdown = () => {
-    timeoutRef.current = setTimeout(() => setDropdownOpen(false), 100)
+  // Keep a panel open / cancel any pending close.
+  const keepOpen = (setter: (v: boolean) => void) => {
+    clearCloseTimer()
+    setter(true)
+  }
+
+  // Short delay ONLY to bridge the gap between the trigger and the panel.
+  const scheduleClose = (setter: (v: boolean) => void) => {
+    clearCloseTimer()
+    timeoutRef.current = setTimeout(() => setter(false), 100)
+  }
+
+  // Close instantly — used when the cursor leaves the panel area itself,
+  // so the panel switches off right there instead of tracking the cursor.
+  const closeNow = (setter: (v: boolean) => void) => {
+    clearCloseTimer()
+    setter(false)
   }
 
   return (
@@ -333,11 +347,11 @@ export default function Header({ industries = [], services = [] }: { industries?
             <div
               className="relative"
               ref={dropdownRef}
-              onMouseEnter={openDropdown}
-              onMouseLeave={closeDropdown}
+              onMouseEnter={() => keepOpen(setDropdownOpen)}
+              onMouseLeave={() => scheduleClose(setDropdownOpen)}
             >
               <button className="nav-link flex items-center gap-1 text-[16px]!">
-                Solutions 
+                Solutions
               </button>
 
               {/* Mega dropdown */}
@@ -345,15 +359,17 @@ export default function Header({ industries = [], services = [] }: { industries?
                 <div
                   className="fixed inset-0 top-16 z-40 backdrop-blur-sm bg-black/20"
                   onClick={() => setDropdownOpen(false)}
-                  onMouseLeave={closeDropdown}
                 >
                   {/* Dropdown panel */}
                   <div
                     className="absolute left-0 right-0 top-4 px-[5%]"
                     onClick={(e) => e.stopPropagation()}
-                    onMouseEnter={openDropdown}
                   >
-                    <div className="max-w-[1200px] mx-auto border border-[#CCCCCC] bg-background shadow-sm">
+                    <div
+                      className="max-w-[1200px] mx-auto border border-[#CCCCCC] bg-background shadow-sm"
+                      onMouseEnter={() => keepOpen(setDropdownOpen)}
+                      onMouseLeave={() => closeNow(setDropdownOpen)}
+                    >
                       {/* Services */}
                       <div className="grid grid-cols-3 border-b border-[#CCCCCC]">
                         {SERVICE_GROUPS.map((grp, i) => {
@@ -407,33 +423,28 @@ export default function Header({ industries = [], services = [] }: { industries?
             </div>
  
              {/* company with dropdown */}
-            <div      
+            <div
               className="relative"
-              onMouseEnter={() => {
-                if (timeoutRef.current) clearTimeout(timeoutRef.current)
-                setCompanyOpen(true)
-              }}
-              onMouseLeave={() => {
-                timeoutRef.current = setTimeout(() => setCompanyOpen(false), 100)
-              }}
+              onMouseEnter={() => keepOpen(setCompanyOpen)}
+              onMouseLeave={() => scheduleClose(setCompanyOpen)}
             >
               <button className="nav-link flex items-center gap-1 text-[16px]!">
-                Company 
+                Company
               </button>
                 {companyOpen && (
                 <div
                   className="fixed inset-0 top-16 z-40 backdrop-blur-sm bg-black/20"
                   onClick={() => setCompanyOpen(false)}
-                  onMouseEnter={() => {
-                    if (timeoutRef.current) clearTimeout(timeoutRef.current)
-                    setCompanyOpen(true)
-                  }}
-                  onMouseLeave={() => {
-                    timeoutRef.current = setTimeout(() => setCompanyOpen(false), 100)
-                  }}
                 >
-                  <div className="absolute left-0 right-0 top-4 px-[5%]">
-                    <div className="max-w-[1200px] mx-auto border border-[#CCCCCC] bg-background shadow-sm">
+                  <div
+                    className="absolute left-0 right-0 top-4 px-[5%]"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div
+                      className="max-w-[1200px] mx-auto border border-[#CCCCCC] bg-background shadow-sm"
+                      onMouseEnter={() => keepOpen(setCompanyOpen)}
+                      onMouseLeave={() => closeNow(setCompanyOpen)}
+                    >
 
                       <div className="grid grid-cols-4">
                         {COMPANY_MENU.map((item, i) => {
@@ -482,13 +493,8 @@ export default function Header({ industries = [], services = [] }: { industries?
             {/* Industries with dropdown */}
             <div
                 className="relative"
-                onMouseEnter={() => {
-                  if (timeoutRef.current) clearTimeout(timeoutRef.current)
-                  setIndustriesOpen(true)
-                }}
-                onMouseLeave={() => {
-                  timeoutRef.current = setTimeout(() => setIndustriesOpen(false), 100)
-                }}
+                onMouseEnter={() => keepOpen(setIndustriesOpen)}
+                onMouseLeave={() => scheduleClose(setIndustriesOpen)}
               >
               <button
                 type="button"
@@ -501,16 +507,16 @@ export default function Header({ industries = [], services = [] }: { industries?
                 <div
                   className="fixed inset-0 top-16 z-40 backdrop-blur-sm bg-black/20"
                   onClick={() => setIndustriesOpen(false)}
-                   onMouseEnter={() => {
-                    if (timeoutRef.current) clearTimeout(timeoutRef.current)
-                    setIndustriesOpen(true)
-                  }}
-                  onMouseLeave={() => {
-                    timeoutRef.current = setTimeout(() => setIndustriesOpen(false), 100)
-                  }}
                 >
-                  <div className="absolute left-0 right-0 top-4 px-[5%]">
-                    <div className="max-w-[1200px] mx-auto border border-[#CCCCCC] bg-background shadow-sm overflow-hidden">
+                  <div
+                    className="absolute left-0 right-0 top-4 px-[5%]"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div
+                      className="max-w-[1200px] mx-auto border border-[#CCCCCC] bg-background shadow-sm overflow-hidden"
+                      onMouseEnter={() => keepOpen(setIndustriesOpen)}
+                      onMouseLeave={() => closeNow(setIndustriesOpen)}
+                    >
                       <div className="grid grid-cols-5">
                         {industries.map((ind, i) => {
                           const iconUrl = getMediaUrl(ind.icon)

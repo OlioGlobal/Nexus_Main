@@ -1685,6 +1685,20 @@ export interface HomePage {
         }[]
       | null;
   };
+  video?: {
+    enabled?: boolean | null;
+    label?: string | null;
+    heading?: string | null;
+    description?: string | null;
+    /**
+     * Upload an .mp4 or .webm. Deleting the file here also removes it from Cloudinary automatically.
+     */
+    video?: (string | null) | Media;
+    poster?: (string | null) | Media;
+    autoplay?: boolean | null;
+    loop?: boolean | null;
+    muted?: boolean | null;
+  };
   solutions: {
     label: string;
     headingPrefix: string;
@@ -1757,7 +1771,9 @@ export interface HomePage {
           name: string;
           role: string;
           quote: string;
+          company?: string | null;
           image?: (string | null) | Media;
+          logo?: (string | null) | Media;
           id?: string | null;
         }[]
       | null;
@@ -1819,6 +1835,19 @@ export interface HomePageSelect<T extends boolean = true> {
               logo?: T;
               id?: T;
             };
+      };
+  video?:
+    | T
+    | {
+        enabled?: T;
+        label?: T;
+        heading?: T;
+        description?: T;
+        video?: T;
+        poster?: T;
+        autoplay?: T;
+        loop?: T;
+        muted?: T;
       };
   solutions?:
     | T
@@ -1905,7 +1934,9 @@ export interface HomePageSelect<T extends boolean = true> {
               name?: T;
               role?: T;
               quote?: T;
+              company?: T;
               image?: T;
+              logo?: T;
               id?: T;
             };
       };
