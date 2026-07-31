@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Divider from '@/components/Divider'
 import JobApplicationForm from '@/components/JobApplicationForm'
+import { getMediaUrl } from '@/lib/getMediaUrl'
 import '../../blogs/blogs.css'
 
 export const dynamic = 'force-dynamic'
@@ -28,9 +29,12 @@ export async function generateMetadata({ params }: Props) {
   const job = result.docs[0] as any
   if (!job) return { title: 'Job Not Found' }
 
+  const ogImage = getMediaUrl(job.seo?.ogImage)
   return {
-    title: `${job.title} | Careers | OlioNexus`,
-    description: `${job.title} - ${job.department || ''} at OlioNexus`,
+    title: job.seo?.metaTitle || `${job.title} | Careers | Olio Nexus`,
+    description: job.seo?.metaDescription || `${job.title} - ${job.department || ''} at Olio Nexus`,
+    alternates: { canonical: `/careers/${slug}` },
+    ...(ogImage && { openGraph: { images: [ogImage] }, twitter: { images: [ogImage] } }),
   }
 }
 

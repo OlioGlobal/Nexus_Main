@@ -48,7 +48,7 @@ export default function BuiltForIndustry() {
               ${i < 2 ? 'sm:border-r border-[#CCCCCC]' : ''}
             `}
           >
-            <Image src={card.icon} alt="" width={80} height={80} className="object-contain mb-8 w-12 h-12 md:w-20 md:h-20" />
+            <Image src={card.icon} alt={card.title} width={80} height={80} className="object-contain mb-8 w-12 h-12 md:w-20 md:h-20" />
             <div className="mt-auto">
               <h3 className="text-[18px]! md:text-[24px]! mb-3">{card.title}</h3>
               <p className="section-desc text-[15px]! md:text-[16px]!">{card.description}</p>
@@ -66,7 +66,7 @@ export default function BuiltForIndustry() {
               ${i === 0 ? 'sm:border-r border-[#CCCCCC]' : ''}
             `}
           >
-            <Image src={card.icon} alt="" width={80} height={80} className="object-contain mb-8 w-12 h-12 md:w-20 md:h-20" />
+            <Image src={card.icon} alt={card.title} width={80} height={80} className="object-contain mb-8 w-12 h-12 md:w-20 md:h-20" />
             <div className="mt-auto">
               <h3 className="text-[18px]! md:text-[24px]! mb-3">{card.title}</h3>
               <p className="section-desc text-[15px]! md:text-[16px]!">{card.description}</p>

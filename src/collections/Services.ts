@@ -1,5 +1,6 @@
 import { revalidatePath } from 'next/cache'
 import type { CollectionConfig } from 'payload'
+import { seoField } from '../fields/seo'
 import {
   lexicalEditor,
   BoldFeature,
@@ -36,8 +37,14 @@ export const Services: CollectionConfig = {
   hooks: {
     beforeChange: [
       ({ data }) => {
-        if (data?.title) {
+        // Auto-fill the slug from the title ONLY when it's blank, so custom
+        // slugs entered in the admin are preserved on subsequent saves.
+        if (!data.slug && data.title) {
           data.slug = data.title
+        }
+        // Always normalize whatever slug we have to a URL-safe form.
+        if (typeof data.slug === 'string' && data.slug.length) {
+          data.slug = data.slug
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/(^-|-$)/g, '')
@@ -63,6 +70,7 @@ export const Services: CollectionConfig = {
     ],
   },
   fields: [
+    seoField,
     // ── Sidebar ──────────────────────────────────────────────────
     {
       name: 'title',
@@ -74,7 +82,11 @@ export const Services: CollectionConfig = {
       name: 'slug',
       type: 'text',
       unique: true,
-      admin: { position: 'sidebar', readOnly: true, description: 'Auto-generated from title' },
+      admin: {
+        position: 'sidebar',
+        description:
+          'URL path for this service. Auto-filled from the title when left blank; edit it to set a custom URL. Changing the title later will NOT overwrite a slug that already exists.',
+      },
     },
     {
       name: 'group',

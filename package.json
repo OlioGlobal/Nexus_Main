@@ -23,6 +23,8 @@
     "seed:audience": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-audience.ts",
     "seed:impact-stories": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-impact-stories.ts",
     "seed:faq-cta": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-faq-cta.ts",
+    "seed:seo": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-seo.ts",
+    "seed:alt": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-alt-text.ts",
     "seed:industries": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-industries.ts",
     "seed:industry-pages": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-industry-pages.ts",
     "seed:service-slugs": "cross-env NODE_OPTIONS=--no-deprecation tsx src/seed-service-slugs.ts",

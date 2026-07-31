@@ -19,8 +19,10 @@ import { getTestimonials } from '@/lib/getTestimonials'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Careers | OlioNexus',
-  description: "Do your life's best work at OlioNexus.",
+  title: 'Careers at Olio Nexus | Join Our Tech Team',
+  description:
+    'Build your future at Olio Nexus, an IT technology company offering exciting careers in software product development, AI consulting services, UI/UX consulting, and more.',
+  alternates: { canonical: '/careers' },
 }
 
 export default async function CareersPage() {

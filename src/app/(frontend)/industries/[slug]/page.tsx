@@ -10,6 +10,9 @@ import IndustryWhyChoose from '@/components/industries/IndustryWhyChoose'
 import IndustryChallengeSection from '@/components/industries/IndustryChallengeSection'
 import CTA from '@/components/CTA'
 import ServiceFaq from '@/components/ServiceFaq'
+import { getMediaUrl } from '@/lib/getMediaUrl'
+import JsonLd from '@/components/JsonLd'
+import { collectionPageSchema, serviceSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
 import Divider from '@/components/Divider'
 import FadeIn from '@/components/FadeIn'
 
@@ -33,9 +36,12 @@ export async function generateMetadata({ params }: Props) {
   const page = result.docs[0] as any
   if (!page) return { title: 'Industry Not Found' }
 
+  const ogImage = getMediaUrl(page.seo?.ogImage)
   return {
-    title: `${page.title} | OlioNexus`,
-    description: page.heroDescription || '',
+    title: page.seo?.metaTitle || `${page.title} | Olio Nexus`,
+    description: page.seo?.metaDescription || page.heroDescription || '',
+    alternates: { canonical: `/industries/${slug}` },
+    ...(ogImage && { openGraph: { images: [ogImage] }, twitter: { images: [ogImage] } }),
   }
 }
 
@@ -55,6 +61,28 @@ export default async function IndustryPage({ params }: Props) {
 
   return (
     <article>
+      <JsonLd
+        data={[
+          collectionPageSchema({
+            path: `/industries/${slug}`,
+            name: page.title,
+            description: page.heroDescription,
+            about: page.title,
+            image: getMediaUrl(page.image),
+          }),
+          serviceSchema(
+            { title: page.title, shortDescription: page.heroDescription, deliverables: page.solutionItems },
+            `/industries/${slug}`,
+            getMediaUrl(page.image),
+          ),
+          faqSchema(page.faqItems),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Industries', path: '/industries' },
+            { name: page.title, path: `/industries/${slug}` },
+          ]),
+        ].filter(Boolean)}
+      />
       {/* Hero */}
       <IndustryPageHero
         title={page.title}

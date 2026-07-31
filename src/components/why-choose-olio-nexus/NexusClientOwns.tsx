@@ -63,7 +63,7 @@ export default function NexusClientOwns() {
             <div className="mb-10">
               <Image
                 src={item.icon}
-                alt=""
+                alt={item.title || 'What every Nexus client owns'}
                 width={80}
                 height={80}
                 className="h-20 w-20 object-contain"

@@ -7,6 +7,8 @@ import BlogCard from '@/components/BlogCard'
 import Divider from '@/components/Divider'
 import '../blogs.css'
 import { getMediaUrl } from '@/lib/getMediaUrl'
+import JsonLd from '@/components/JsonLd'
+import { blogPostingSchema, breadcrumbSchema } from '@/lib/schema'
 
 export const dynamic = 'force-dynamic'
 
@@ -31,9 +33,12 @@ export async function generateMetadata({ params }: Props) {
   const post = result.docs[0] as any
   if (!post) return { title: 'Post Not Found' }
 
+  const ogImage = getMediaUrl(post.seo?.ogImage) || getMediaUrl(post.featuredImage)
   return {
-    title: `${post.title} | OlioNexus`,
-    description: post.excerpt || '',
+    title: post.seo?.metaTitle || `${post.title} | Olio Nexus`,
+    description: post.seo?.metaDescription || post.excerpt || '',
+    alternates: { canonical: `/blogs/${slug}` },
+    ...(ogImage && { openGraph: { images: [ogImage] }, twitter: { images: [ogImage] } }),
   }
 }
 
@@ -98,6 +103,16 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article>
+      <JsonLd
+        data={[
+          blogPostingSchema(post, `/blogs/${slug}`, imageUrl),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Blogs', path: '/blogs' },
+            { name: post.title, path: `/blogs/${slug}` },
+          ]),
+        ]}
+      />
       {/* Header */}
       <div className="section-spacing text-center border-b border-[#CCCCCC]">
         {/* Category + Date */}

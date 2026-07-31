@@ -50,7 +50,7 @@ export default function IndustryFirstApproach() {
               key={i}
               className={`flex flex-col p-6 md:p-10 border-b border-[#CCCCCC] ${i === steps.length - 1 ? 'border-b-0' : ''}`}
             >
-              <Image src={step.icon} alt="" width={48} height={48} className="w-10 h-10 md:w-20 md:h-20 object-contain mb-4" />
+              <Image src={step.icon} alt={step.title} width={48} height={48} className="w-10 h-10 md:w-20 md:h-20 object-contain mb-4" />
               <h3 className="text-[18px]! md:text-[24px]! mb-2">{step.title}</h3>
               <p className="section-desc text-[15px]! md:text-[16px]!">{step.description}</p>
             </div>

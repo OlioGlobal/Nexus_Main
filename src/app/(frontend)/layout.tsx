@@ -6,11 +6,29 @@ import Footer from '@/components/Footer'
 import FooterBottom from '@/components/FooterBottom'
 import ScrollToTop from '@/components/ScrollToTop'
 import TrackingProvider from '@/components/TrackingProvider'
+import JsonLd from '@/components/JsonLd'
+import { organizationSchema, websiteSchema } from '@/lib/schema'
 import './styles.css'
 
+const siteUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+
 export const metadata = {
-  title: 'OlioNexus',
+  metadataBase: new URL(siteUrl),
+  title: 'Olio Nexus',
   description: 'We bridge the gap between what\'s possible and what\'s practical.',
+  openGraph: {
+    type: 'website',
+    siteName: 'Olio Nexus',
+    locale: 'en_US',
+    url: siteUrl,
+    title: 'Olio Nexus',
+    description: 'We bridge the gap between what\'s possible and what\'s practical.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Olio Nexus',
+    description: 'We bridge the gap between what\'s possible and what\'s practical.',
+  },
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -38,6 +56,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className="min-h-screen antialiased">
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <TrackingProvider />
         <ScrollToTop />
         <Header industries={navIndustries} services={navServices} />

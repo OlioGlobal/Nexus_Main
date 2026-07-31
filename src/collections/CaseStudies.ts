@@ -1,5 +1,6 @@
 import { revalidatePath } from 'next/cache'
 import type { CollectionConfig } from 'payload'
+import { seoField } from '../fields/seo'
 import {
   lexicalEditor,
   BoldFeature,
@@ -59,6 +60,18 @@ export const CaseStudies: CollectionConfig = {
     ],
   },
   fields: [
+    seoField,
+    {
+      name: 'author',
+      type: 'text',
+      defaultValue: 'Olio Nexus Team',
+      admin: { position: 'sidebar', description: 'Author, used in structured data (schema.org Article).' },
+    },
+    {
+      name: 'keywords',
+      type: 'text',
+      admin: { position: 'sidebar', description: 'Comma-separated keywords for structured data. Falls back to the industry.' },
+    },
     {
       name: 'title',
       type: 'text',

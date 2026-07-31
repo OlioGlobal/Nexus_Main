@@ -13,8 +13,9 @@ import { getTestimonials } from '@/lib/getTestimonials'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Awards & Recognition | OlioNexus',
-  description: 'Each Nexus award reflects a specific achievement — technology innovation, external validation, and service quality standards.',
+  title: 'Awards & Recognition | Olio Nexus Achievements',
+  description: 'Olio Nexus is recognized for excellence in delivering innovative technology solutions, AI consulting services, and enterprise IT solutions across industries worldwide.',
+  alternates: { canonical: '/awards' },
 }
 
 export default async function AwardsPage() {

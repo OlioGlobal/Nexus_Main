@@ -52,7 +52,7 @@ export default function WhatMakesDifferent() {
               <div className="w-28 h-28 flex items-start justify-start">
                 <Image
                   src={item.icon}
-                  alt=""
+                  alt={item.title || 'What makes NeXus different'}
                   width={48}
                   height={48}
                   className="w-28 h-28 object-contain"

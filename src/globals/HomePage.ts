@@ -1,5 +1,6 @@
 import { revalidatePath } from 'next/cache'
 import type { GlobalConfig } from 'payload'
+import { seoField } from '../fields/seo'
 
 export const HomePage: GlobalConfig = {
   slug: 'home-page',
@@ -25,6 +26,7 @@ export const HomePage: GlobalConfig = {
     ],
   },
   fields: [
+    seoField,
     {
       name: 'hero',
       type: 'group',

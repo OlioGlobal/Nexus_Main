@@ -21,6 +21,8 @@ import Industries from '@/components/Industries'
 import Divider from '@/components/Divider'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { getMediaUrl } from '@/lib/getMediaUrl'
+import JsonLd from '@/components/JsonLd'
+import { serviceSchema, webPageSchema, faqSchema, breadcrumbSchema } from '@/lib/schema'
 
 export const dynamic = 'force-dynamic'
 
@@ -45,9 +47,12 @@ export async function generateMetadata({ params }: Props) {
   const svc = result.docs[0] as any
   if (!svc) return { title: 'Service Not Found' }
 
+  const ogImage = getMediaUrl(svc.seo?.ogImage)
   return {
-    title: `${svc.title} | OlioNexus`,
-    description: svc.shortDescription || svc.tagline || '',
+    title: svc.seo?.metaTitle || `${svc.title} | Olio Nexus`,
+    description: svc.seo?.metaDescription || svc.shortDescription || svc.tagline || '',
+    alternates: { canonical: `/services/${slug}` },
+    ...(ogImage && { openGraph: { images: [ogImage] }, twitter: { images: [ogImage] } }),
   }
 }
 
@@ -104,6 +109,29 @@ export default async function ServicePage({ params }: Props) {
 
   return (
     <article>
+      <JsonLd
+        data={[
+          serviceSchema(svc, `/services/${slug}`, coverImageUrl),
+          webPageSchema({
+            path: `/services/${slug}`,
+            name: `${svc.title} | Olio Nexus`,
+            description: svc.shortDescription || svc.tagline,
+            image: coverImageUrl,
+            dateModified: svc.updatedAt,
+            breadcrumbPath: [
+              { name: 'Home', path: '/' },
+              { name: 'Services', path: '/services' },
+              { name: svc.title, path: `/services/${slug}` },
+            ],
+          }),
+          faqSchema(svc.faqItems),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Services', path: '/services' },
+            { name: svc.title, path: `/services/${slug}` },
+          ]),
+        ].filter(Boolean)}
+      />
       {/* ── Hero ── */}
       <div className="relative px-4 md:px-8 py-14 md:py-24 border-b border-[#CCCCCC] text-center overflow-hidden">
         <Image

@@ -14,9 +14,10 @@ import Divider from '@/components/Divider'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Industries | OlioNexus',
+  title: 'Industries We Serve | Olio Nexus IT Solutions',
   description:
-    "Technology solutions designed to solve real business challenges in your industry. We create technology solutions that fit your industry's real-world operations, regulations, and growth needs.",
+    "Olio Nexus delivers industry-specific technology solutions across manufacturing, engineering, education, real estate, and healthcare, tailored to each sector's unique challenges.",
+  alternates: { canonical: '/industries' },
 }
 
 const industryFaqs = [

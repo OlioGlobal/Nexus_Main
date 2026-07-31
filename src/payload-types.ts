@@ -171,6 +171,9 @@ export interface User {
  */
 export interface Media {
   id: string;
+  /**
+   * Describe what the image shows in a natural phrase (include a relevant keyword where it fits, e.g. the service, industry, or "Olio Nexus"). Avoid raw filenames like "image 109" or "IMG_1418". Leave blank only for purely decorative images.
+   */
   alt: string;
   /**
    * Cloudinary Media Information
@@ -298,6 +301,31 @@ export interface Category {
  */
 export interface Post {
   id: string;
+  /**
+   * Search-engine metadata for this page. Leave blank to fall back to the page defaults.
+   */
+  seo?: {
+    /**
+     * Shown in the browser tab and search results. Aim for 50–60 characters.
+     */
+    metaTitle?: string | null;
+    /**
+     * The snippet shown under the title in search results. Aim for 140–160 characters.
+     */
+    metaDescription?: string | null;
+    /**
+     * Shown when this page is shared on social media. 1200×630px recommended. Falls back to the site default if empty.
+     */
+    ogImage?: (string | null) | Media;
+  };
+  /**
+   * Article author, used in structured data (schema.org BlogPosting).
+   */
+  author?: string | null;
+  /**
+   * Comma-separated keywords for structured data. Falls back to the category.
+   */
+  keywords?: string | null;
   title: string;
   slug?: string | null;
   category: string | Category;
@@ -337,6 +365,23 @@ export interface Post {
  */
 export interface Job {
   id: string;
+  /**
+   * Search-engine metadata for this page. Leave blank to fall back to the page defaults.
+   */
+  seo?: {
+    /**
+     * Shown in the browser tab and search results. Aim for 50–60 characters.
+     */
+    metaTitle?: string | null;
+    /**
+     * The snippet shown under the title in search results. Aim for 140–160 characters.
+     */
+    metaDescription?: string | null;
+    /**
+     * Shown when this page is shared on social media. 1200×630px recommended. Falls back to the site default if empty.
+     */
+    ogImage?: (string | null) | Media;
+  };
   title: string;
   slug?: string | null;
   location?: string | null;
@@ -384,6 +429,31 @@ export interface JobApplication {
  */
 export interface CaseStudy {
   id: string;
+  /**
+   * Search-engine metadata for this page. Leave blank to fall back to the page defaults.
+   */
+  seo?: {
+    /**
+     * Shown in the browser tab and search results. Aim for 50–60 characters.
+     */
+    metaTitle?: string | null;
+    /**
+     * The snippet shown under the title in search results. Aim for 140–160 characters.
+     */
+    metaDescription?: string | null;
+    /**
+     * Shown when this page is shared on social media. 1200×630px recommended. Falls back to the site default if empty.
+     */
+    ogImage?: (string | null) | Media;
+  };
+  /**
+   * Author, used in structured data (schema.org Article).
+   */
+  author?: string | null;
+  /**
+   * Comma-separated keywords for structured data. Falls back to the industry.
+   */
+  keywords?: string | null;
   /**
    * Project name (e.g. "Paper Trail")
    */
@@ -481,11 +551,28 @@ export interface CaseStudy {
 export interface Service {
   id: string;
   /**
+   * Search-engine metadata for this page. Leave blank to fall back to the page defaults.
+   */
+  seo?: {
+    /**
+     * Shown in the browser tab and search results. Aim for 50–60 characters.
+     */
+    metaTitle?: string | null;
+    /**
+     * The snippet shown under the title in search results. Aim for 140–160 characters.
+     */
+    metaDescription?: string | null;
+    /**
+     * Shown when this page is shared on social media. 1200×630px recommended. Falls back to the site default if empty.
+     */
+    ogImage?: (string | null) | Media;
+  };
+  /**
    * Service name (e.g. "AI Consulting Services")
    */
   title: string;
   /**
-   * Auto-generated from title
+   * URL path for this service. Auto-filled from the title when left blank; edit it to set a custom URL. Changing the title later will NOT overwrite a slug that already exists.
    */
   slug?: string | null;
   /**
@@ -896,6 +983,23 @@ export interface Service {
 export interface IndustryPage {
   id: string;
   /**
+   * Search-engine metadata for this page. Leave blank to fall back to the page defaults.
+   */
+  seo?: {
+    /**
+     * Shown in the browser tab and search results. Aim for 50–60 characters.
+     */
+    metaTitle?: string | null;
+    /**
+     * The snippet shown under the title in search results. Aim for 140–160 characters.
+     */
+    metaDescription?: string | null;
+    /**
+     * Shown when this page is shared on social media. 1200×630px recommended. Falls back to the site default if empty.
+     */
+    ogImage?: (string | null) | Media;
+  };
+  /**
    * Industry page title (e.g. "Technology Solutions for Industrial Machinery Manufacturers")
    */
   title: string;
@@ -1300,6 +1404,15 @@ export interface CategoriesSelect<T extends boolean = true> {
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
+  author?: T;
+  keywords?: T;
   title?: T;
   slug?: T;
   category?: T;
@@ -1318,6 +1431,13 @@ export interface PostsSelect<T extends boolean = true> {
  * via the `definition` "jobs_select".
  */
 export interface JobsSelect<T extends boolean = true> {
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
   title?: T;
   slug?: T;
   location?: T;
@@ -1349,6 +1469,15 @@ export interface JobApplicationsSelect<T extends boolean = true> {
  * via the `definition` "case-studies_select".
  */
 export interface CaseStudiesSelect<T extends boolean = true> {
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
+  author?: T;
+  keywords?: T;
   title?: T;
   slug?: T;
   status?: T;
@@ -1377,6 +1506,13 @@ export interface CaseStudiesSelect<T extends boolean = true> {
  * via the `definition` "services_select".
  */
 export interface ServicesSelect<T extends boolean = true> {
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
   title?: T;
   slug?: T;
   group?: T;
@@ -1539,6 +1675,13 @@ export interface ServicesSelect<T extends boolean = true> {
  * via the `definition` "industry-pages_select".
  */
 export interface IndustryPagesSelect<T extends boolean = true> {
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
   title?: T;
   slug?: T;
   status?: T;
@@ -1665,6 +1808,23 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface HomePage {
   id: string;
+  /**
+   * Search-engine metadata for this page. Leave blank to fall back to the page defaults.
+   */
+  seo?: {
+    /**
+     * Shown in the browser tab and search results. Aim for 50–60 characters.
+     */
+    metaTitle?: string | null;
+    /**
+     * The snippet shown under the title in search results. Aim for 140–160 characters.
+     */
+    metaDescription?: string | null;
+    /**
+     * Shown when this page is shared on social media. 1200×630px recommended. Falls back to the site default if empty.
+     */
+    ogImage?: (string | null) | Media;
+  };
   hero: {
     headingPrefix: string;
     headingHighlight: string;
@@ -1812,6 +1972,13 @@ export interface HomePage {
  * via the `definition` "home-page_select".
  */
 export interface HomePageSelect<T extends boolean = true> {
+  seo?:
+    | T
+    | {
+        metaTitle?: T;
+        metaDescription?: T;
+        ogImage?: T;
+      };
   hero?:
     | T
     | {

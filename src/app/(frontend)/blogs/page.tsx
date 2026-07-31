@@ -5,6 +5,8 @@ import BlogCard from '@/components/BlogCard'
 import BlogCategoryFilter from '@/components/BlogCategoryFilter'
 import Divider from '@/components/Divider'
 import { getMediaUrl } from '@/lib/getMediaUrl'
+import JsonLd from '@/components/JsonLd'
+import { blogSchema, breadcrumbSchema } from '@/lib/schema'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,8 +15,10 @@ interface Props {
 }
 
 export const metadata = {
-  title: 'Blogs | OlioNexus',
-  description: 'Insights, strategies, and stories from the OlioNexus team.',
+  title: 'Technology & AI Insights Blog | Olio Nexus',
+  description:
+    'Read the Olio Nexus blog for expert perspectives on technology solutions, AI consulting services, software product development, and digital transformation consulting.',
+  alternates: { canonical: '/blogs' },
 }
 
 export default async function BlogsPage({ searchParams }: Props) {
@@ -62,6 +66,15 @@ export default async function BlogsPage({ searchParams }: Props) {
 
   return (
     <section>
+      <JsonLd
+        data={[
+          blogSchema('/blogs'),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Blogs', path: '/blogs' },
+          ]),
+        ]}
+      />
       {/* Header — left aligned, no gap */}
       <div className="section-spacing px-4 md:px-8">
         <h2

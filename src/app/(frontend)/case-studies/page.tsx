@@ -3,13 +3,16 @@ import configPromise from '@payload-config'
 import CaseStudyCard from '@/components/CaseStudyCard'
 import Divider from '@/components/Divider'
 import { getMediaUrl } from '@/lib/getMediaUrl'
+import JsonLd from '@/components/JsonLd'
+import { collectionPageSchema, breadcrumbSchema } from '@/lib/schema'
 
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Case Studies | OlioNexus',
+  title: 'Client Success Stories | Olio Nexus Case Studies',
   description:
-    'All projects presented as high-impact features. We deliver outcomes, not just code.',
+    'Explore our client success stories to see how Olio Nexus delivers measurable results through technology solutions, AI consulting services, and digital transformation consulting.',
+  alternates: { canonical: '/case-studies' },
 }
 
 export default async function CaseStudiesPage() {
@@ -31,6 +34,20 @@ export default async function CaseStudiesPage() {
 
   return (
     <section>
+      <JsonLd
+        data={[
+          collectionPageSchema({
+            path: '/case-studies',
+            name: 'Client Success Stories',
+            description:
+              'Explore how Olio Nexus delivers measurable results through technology solutions, AI consulting, and digital transformation.',
+          }),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Client Success Stories', path: '/case-studies' },
+          ]),
+        ]}
+      />
       {/* Header */}
       <div className="section-spacing px-4 md:px-8">
         <p className="section-title text-left! mb-4">[Case Studies]</p>

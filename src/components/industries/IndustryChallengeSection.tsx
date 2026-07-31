@@ -54,7 +54,7 @@ export default function IndustryChallengeSection({
                 {iconUrl && (
                   <Image
                     src={iconUrl}
-                    alt=""
+                    alt={item.title || 'Industry challenge solution'}
                     width={48}
                     height={48}
                     className="w-12 h-12 md:w-24 md:h-24 object-contain"

@@ -77,7 +77,7 @@ function ImagePanel({
         <div className="relative aspect-[600/432] overflow-hidden">
           <Image
             src={image}
-            alt=""
+            alt="Olio Nexus technology solutions in practice"
             fill
             className="object-cover"
           />

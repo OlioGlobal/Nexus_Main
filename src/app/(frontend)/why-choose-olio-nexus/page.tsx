@@ -13,9 +13,10 @@ import WhyNexusCta from '@/components/why-choose-olio-nexus/WhyNexusCTA'
 import { getTestimonials } from '@/lib/getTestimonials'
 
 export const metadata = {
-  title: 'Why Choose Olio NeXus | OlioNexus',
+  title: 'Why Choose Olio Nexus | Your Technology Partner',
   description:
-    'Discover why Olio Nexus bridges the gap across AI, Build, and technology transformation Labs with one strategy and one team.',
+    'Choose Olio Nexus for proven technology solutions, end-to-end AI consulting services, and enterprise IT solutions, delivered by a team committed to your business outcomes.',
+  alternates: { canonical: '/why-choose-olio-nexus' },
 }
 
 export default async function  WhyChooseOlioNexusPage() {

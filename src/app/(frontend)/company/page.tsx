@@ -1,6 +1,8 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import CompanyHero from '@/components/company/CompanyHero'
+import JsonLd from '@/components/JsonLd'
+import { aboutPageSchema, breadcrumbSchema } from '@/lib/schema'
 import OurStory from '@/components/company/OurStory'
 import Divider from '@/components/Divider'
 import Solutions from '@/components/Solutions'
@@ -12,9 +14,10 @@ import ProprietaryProducts from '@/components/company/ProprietaryProducts'
 import LeadershipTeam from '@/components/company/LeadershipTeam'
 
 export const metadata = {
-  title: 'Company | OlioNexus',
+  title: 'About Olio Nexus | Company Profile & IT Vision',
   description:
-    'NeXus combines AI, custom software development, and technology transformation roadmaps to solve problems.',
+    'Olio Nexus is a full-spectrum IT technology company offering technology solutions, AI consulting services, and digital transformation to help businesses grow and innovate.',
+  alternates: { canonical: '/company' },
 }
 
 export default async function CompanyPage() {
@@ -28,6 +31,19 @@ export default async function CompanyPage() {
 
   return (
     <main>
+      <JsonLd
+        data={[
+          aboutPageSchema('/company', {
+            name: 'About Olio Nexus | Company Profile & IT Vision',
+            description:
+              'Olio Nexus is a full-spectrum IT technology company offering technology solutions, AI consulting, and digital transformation.',
+          }),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Company', path: '/company' },
+          ]),
+        ]}
+      />
       <CompanyHero />
       <OurStory />
       <Divider />

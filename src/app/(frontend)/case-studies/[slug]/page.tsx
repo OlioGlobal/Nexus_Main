@@ -6,6 +6,8 @@ import CaseStudyCard from '@/components/CaseStudyCard'
 import Divider from '@/components/Divider'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { getMediaUrl } from '@/lib/getMediaUrl'
+import JsonLd from '@/components/JsonLd'
+import { articleSchema, breadcrumbSchema } from '@/lib/schema'
 
 export const dynamic = 'force-dynamic'
 
@@ -30,9 +32,12 @@ export async function generateMetadata({ params }: Props) {
   const cs = result.docs[0] as any
   if (!cs) return { title: 'Case Study Not Found' }
 
+  const ogImage = getMediaUrl(cs.seo?.ogImage) || getMediaUrl(cs.heroImage) || getMediaUrl(cs.coverImage)
   return {
-    title: `${cs.title} | OlioNexus`,
-    description: cs.tagline || '',
+    title: cs.seo?.metaTitle || `${cs.title} | Olio Nexus`,
+    description: cs.seo?.metaDescription || cs.tagline || '',
+    alternates: { canonical: `/case-studies/${slug}` },
+    ...(ogImage && { openGraph: { images: [ogImage] }, twitter: { images: [ogImage] } }),
   }
 }
 
@@ -83,6 +88,16 @@ export default async function CaseStudyPage({ params }: Props) {
 
   return (
     <article>
+      <JsonLd
+        data={[
+          articleSchema(cs, `/case-studies/${slug}`, heroImageUrl || coverImageUrl),
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Client Success Stories', path: '/case-studies' },
+            { name: cs.title, path: `/case-studies/${slug}` },
+          ]),
+        ]}
+      />
 
       {/* ── Hero image ── */}
       {(heroImageUrl || coverImageUrl) && (

@@ -58,7 +58,7 @@ export default function IndustryRealWorld({ title, items = [] }: IndustryRealWor
               {iconUrl && (
                 <Image
                   src={iconUrl}
-                  alt=""
+                  alt={item.title || 'Industry technology solution'}
                   width={56}
                   height={56}
                   className="w-12 h-12 md:w-24 md:h-24 object-contain"

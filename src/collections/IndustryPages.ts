@@ -1,5 +1,6 @@
 import { revalidatePath } from 'next/cache'
 import type { CollectionConfig } from 'payload'
+import { seoField } from '../fields/seo'
 import {
   lexicalEditor,
   BoldFeature,
@@ -59,6 +60,7 @@ export const IndustryPages: CollectionConfig = {
     ],
   },
   fields: [
+    seoField,
     {
       name: 'title',
       type: 'text',

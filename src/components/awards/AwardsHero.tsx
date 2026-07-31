@@ -49,7 +49,7 @@ export default function AwardsHero() {
               ${i < 2 ? 'border-b sm:border-b-0 border-[#CCCCCC]' : ''}
             `}
           >
-            <Image src={item.icon} alt="" width={80} height={80} className="mx-auto mb-5" />
+            <Image src={item.icon} alt={item.text || 'Olio Nexus award recognition'} width={80} height={80} className="mx-auto mb-5" />
             <p className="section-desc text-[15px]! md:text-[16px]!">{item.text}</p>
           </div>
         ))}

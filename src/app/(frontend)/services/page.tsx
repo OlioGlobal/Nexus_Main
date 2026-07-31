@@ -7,9 +7,10 @@ import { getMediaUrl } from '@/lib/getMediaUrl'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Services | OlioNexus',
+  title: 'Technology Solutions | Nexus Build — Olio Nexus',
   description:
-    'Explore our full range of services — from AI consulting to custom software development and digital transformation.',
+    'Discover our end-to-end technology solutions under Nexus Build, covering software development, app development, UI/UX consulting, managed services, and resource augmentation.',
+  alternates: { canonical: '/services' },
 }
 
 export default async function ServicesPage() {

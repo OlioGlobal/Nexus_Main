@@ -22,6 +22,10 @@ export const Media: CollectionConfig = {
       name: 'alt',
       type: 'text',
       required: true,
+      admin: {
+        description:
+          'Describe what the image shows in a natural phrase (include a relevant keyword where it fits, e.g. the service, industry, or "Olio Nexus"). Avoid raw filenames like "image 109" or "IMG_1418". Leave blank only for purely decorative images.',
+      },
     },
   ],
   upload: {
